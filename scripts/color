@@ -7,6 +7,8 @@ COLORS[red]=$(tput setaf 1)
 COLORS[green]=$(tput setaf 2)
 COLORS[yellow]=$(tput setaf 3)
 COLORS[blue]=$(tput setaf 4)
+COLORS[magenta]=$(tput setaf 5)
+COLORS[cyan]=$(tput setaf 6)
 COLORS[gray]=$(tput setaf 7)
 
 do_color() {
@@ -14,6 +16,8 @@ do_color() {
     local text=$2
     echo "${COLORS[$color]}$text$reset"
 }
+
+[ -z "$1" ] && printf "Usage:\ncolor color_name text \nsome_command | color color_name\n\nAvailable colors: red, green, yellow, blue, magenta, cyan, gray" && exit 1
 
 if [ -z "$2" ]; then
     cat | while read -r text; do do_color "$1" "$text"; done
