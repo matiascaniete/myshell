@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# select command from history and copy it to clipboard
+history | cut -d' ' -f7- | tac | fzf --height=40% --no-sort --header='Selecciona el comando para copiar al clipboard' | tee >(xsel -b) | xargs -0 -I '{}' echo 'Comando copiado al clipboard: {}'

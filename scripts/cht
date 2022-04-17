@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+# cheat.sh
+curl "cheat.sh/$1" | "$PAGER"

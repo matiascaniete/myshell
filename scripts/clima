@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# get forecast
+ansiweather -f 7 -l Barcelona,ES -s true -a false | cut -d '>' -f2- | tr '-' '\n'
