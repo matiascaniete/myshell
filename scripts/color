@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+reset=$(tput op)
+
+declare -A COLORS
+COLORS[red]=$(tput setaf 1)
+COLORS[green]=$(tput setaf 2)
+COLORS[yellow]=$(tput setaf 3)
+COLORS[blue]=$(tput setaf 4)
+COLORS[gray]=$(tput setaf 7)
+
+do_color() {
+    local color=$1
+    local text=$2
+    echo "${COLORS[$color]}$text$reset"
+}
+
+if [ -z "$2" ]; then
+    cat | while read -r text; do do_color "$1" "$text"; done
+else
+    do_color "$1" "$2"
+fi
