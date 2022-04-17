@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+KEY_FILE="$HOME/.config/btc/key"
+
+if [ ! -f "$KEY_FILE" ]; then
+    echo "$KEY_FILE not exist"
+    exit 1
+fi
+
+KEY=$(cat "$KEY_FILE")
+URL="https://api.nomics.com/v1/currencies/ticker?key=$KEY&ids=BTC&interval=1h&convert=EUR"
+
+#curl --silent "$URL" | jq -r ".[0].price" | cut -d "." -f 1
+curl --silent "$URL" | jq -r ".[0].price"
