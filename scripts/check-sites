@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+domains_file=$CHECK_SITES_DOMAINS_FILE
+
+[ ! -f "$domains_file" ] && domains_file=~/.config/check-sites/domains
+[ ! -f "$domains_file" ] && color red "Domains file [$domains_file] do not exists! Create one there or specify the location with CHECK_SITES_DOMAINS_FILE env variable" && exit 1
+
+cat <"$domains_file" | while read -r domain; do
+    check-cert "$domain"
+done
