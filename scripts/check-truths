@@ -2,6 +2,9 @@
 
 check_statements_from_file() {
     ERROR=0
+    
+    printf "[%s]:" "$1"
+    
     while read -r line; do
         statement=$(echo "$line" | cut -d= -f1)
         expec_value=$(echo "$line" | cut -d= -f2- | tr -d "\n\r")
@@ -15,7 +18,7 @@ check_statements_from_file() {
         fi
     done <"$1"
 
-    printf "[%s]: %s\n" "$1" "$([ $ERROR = 1 ] && color red ERROR || color green SUCCESS)"
+    printf "%s\n" "$([ $ERROR = 1 ] && color red ERROR || color green SUCCESS)"
     return $ERROR
 }
 
