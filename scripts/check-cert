@@ -1,31 +1,47 @@
 #!/usr/bin/env sh
 
-domain="$1"
+DOMAINS_FILE=$CHECK_CERT_DOMAINS_FILE
+DEFAULT_DOMAINS_FILE=~/.config/check-cert/domains
 
-if [ -z "$domain" ]; then
-    command=$(basename "$0")
-    echo "Usage: $command <domain>"
+check_ssl_certificate() {
+    domain="$1"
+    echo "Checking ssl certificate for [$(color blue "$domain")]..."
+    response=$(echo | openssl s_client -servername "$domain" -connect "$domain":443 2>/dev/null | openssl x509 -noout -issuer -subject -dates 2>/dev/null)
 
-    exit 1
+    if [ -n "$response" ]; then
+
+        expira=$(echo "$response" | grep "notAfter=" | cut -d= -f2)
+        r_ts=$(date +%s --date "today +1 week")
+        y_ts=$(date +%s --date "today +1 month")
+        g_ts=$(date +%s --date "today +2 month")
+
+        expira_ts=$(date +%s --date "$expira")
+
+        if [ "$expira_ts" -ge "$r_ts" ]; then color=red; fi
+        if [ "$expira_ts" -ge "$y_ts" ]; then color=yellow; fi
+        if [ "$expira_ts" -ge "$g_ts" ]; then color=green; fi
+
+        printf "Expires on: %s\n" "$(date --iso-8601 --date "$expira" | color $color)"
+    else
+        printf "No certificate found!\n" | color red && exit 1
+    fi
+}
+
+check_domains_from_file() {
+    while read -r domain; do
+        check_ssl_certificate "$domain"
+    done <"$DOMAINS_FILE"
+}
+
+if [ "$1" ]; then
+    check_ssl_certificate "$1"
+    return
 fi
 
-echo "Checking ssl certificate for [$(color blue "$domain")]..."
-response=$(echo | openssl s_client -servername "$domain" -connect "$domain":443 2>/dev/null | openssl x509 -noout -issuer -subject -dates 2>/dev/null)
+[ ! -f "$DOMAINS_FILE" ] && DOMAINS_FILE=$DEFAULT_DOMAINS_FILE
+[ ! -f "$DOMAINS_FILE" ] && {
+    color red "No domains to check"
+    color gray "Please, either give a domain as a first argument, create a domain list file at [$DOMAINS_FILE] or specify the file location with CHECK_CERT_DOMAINS_FILE env variable"
+} && exit 1
 
-if [ -n "$response" ]; then
-
-    expira=$(echo "$response" | grep "notAfter=" | cut -d= -f2)
-    r_ts=$(date +%s --date "today +1 week")
-    y_ts=$(date +%s --date "today +1 month")
-    g_ts=$(date +%s --date "today +2 month")
-
-    expira_ts=$(date +%s --date "$expira")
-
-    if [ "$expira_ts" -ge "$r_ts" ]; then color=red; fi
-    if [ "$expira_ts" -ge "$y_ts" ]; then color=yellow; fi
-    if [ "$expira_ts" -ge "$g_ts" ]; then color=green; fi
-
-    printf "Expires on: %s\n" "$(date --iso-8601 --date "$expira" | color $color)"
-else
-    printf "No certificate found!\n" | color red && exit 1
-fi
+check_domains_from_file
