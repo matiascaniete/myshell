@@ -23,7 +23,7 @@ check_ssl_certificate() {
 
         printf "Expires on: %s\n" "$(date --iso-8601 --date "$expira" | color $color)"
     else
-        printf "No certificate found!\n" | color red && exit 1
+        printf "No certificate found!\n" | color red && return 1
     fi
 }
 
