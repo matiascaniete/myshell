@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 domains_file=$CHECK_SITES_DOMAINS_FILE
 
@@ -15,4 +15,4 @@ edit() {
     eval "$EDITOR" "$domains_file"
 }
 
-[ ! $@ ] && check || $@
+[ ! "$@" ] && check || "$@"
