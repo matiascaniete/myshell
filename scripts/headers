@@ -1,16 +1,20 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-headers() {
-    local url="$1"
-    curl --silent -I "$url"
+get_headers() {
+    curl --silent -I "$1"
 }
 
 status() {
-    headers "$1" | head -n1 | cut -d' ' -f2
+    get_headers "$1" | head -n1 | cut -d' ' -f2
 }
 
 location() {
-    headers "$1" | grep -i location: | cut -d' ' -f2-
+    get_headers "$1" | grep -i location: | cut -d' ' -f2-
 }
 
-[ ! "$2" ] && headers "$1" || $@
+if [ -z "$2" ]; then
+    get_headers "$1"
+    exit
+fi
+
+eval "$1 $2"
