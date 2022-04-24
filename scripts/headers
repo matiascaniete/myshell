@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+headers() {
+    local url="$1"
+    curl --silent -I "$url"
+}
+
+status() {
+    headers "$1" | head -n1 | cut -d' ' -f2
+}
+
+location() {
+    headers "$1" | grep -i location: | cut -d' ' -f2-
+}
+
+[ ! "$2" ] && headers "$1" || $@

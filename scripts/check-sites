@@ -2,9 +2,6 @@
 
 domains_file=$CHECK_SITES_DOMAINS_FILE
 
-[ ! -f "$domains_file" ] && domains_file=~/.config/check-sites/domains
-[ ! -f "$domains_file" ] && color red "Domains file [$domains_file] do not exists! Create one there or specify the location with CHECK_SITES_DOMAINS_FILE env variable" && exit 1
-
 check() {
     cat <"$domains_file" | while read -r domain; do
         check-cert "$domain"
@@ -14,5 +11,14 @@ check() {
 edit() {
     eval "$EDITOR" "$domains_file"
 }
+
+[ ! -f "$domains_file" ] && domains_file=~/.config/check-sites/domains
+[ ! -f "$domains_file" ] && {
+    color red "Domains file [$domains_file] do not exists!"
+    color gray "Please, create one there or specify the location with CHECK_SITES_DOMAINS_FILE env variable"
+    if confirm "create one?"; then
+        mktouch "$domains_file" && edit
+    fi
+} && exit 1
 
 [ ! "$@" ] && check || "$@"

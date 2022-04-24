@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+
+lower() {
+    echo "$1" | tr '[:upper:]' '[:lower:]'
+}
+
+message="$1"
+default="$2"
+default="${default:-n}"
+default="$(lower "$default")"
+
+yn=$([ "$default" = "n" ] && printf "[y/N]" || printf "[Y/n]")
+
+printf "%s %s" "$(color yellow "$message")" "$yn"
+read -r response
+
+response="$(lower "$response")"
+response="${response:-$default}"
+
+[ "$response" = "y" ]
