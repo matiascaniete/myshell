@@ -2,19 +2,21 @@
 
 check_statements_from_file() {
     ERROR=0
-    
-    printf "[%s]:" "$1"
-    
-    while read -r line; do
-        statement=$(echo "$line" | cut -d= -f1)
-        expec_value=$(echo "$line" | cut -d= -f2- | tr -d "\n\r")
-        evald_value="$(eval "$statement" 2>/dev/null | tr -d "\n\r")"
-        printf '.'
 
-        # evald_value="https://test.fuckermate.com/"
-        if [ "$expec_value" != "$evald_value" ]; then
-            [ -n "$DEBUG" ] && printf "Error on line [%s]\nThe result of [eval %s] was [%s], expected [%s]\n" "$line" "$statement" "$evald_value" "$expec_value"
-            ERROR=1
+    printf "[%s]:" "$1"
+
+    while read -r line; do
+        if [ -n "$line" ]; then
+            statement=$(echo "$line" | cut -d= -f1)
+            expec_value=$(echo "$line" | cut -d= -f2- | tr -d "\n\r")
+            evald_value="$(eval "$statement" 2>/dev/null | tr -d "\n\r")"
+            printf '.'
+
+            # evald_value="https://test.fuckermate.com/"
+            if [ "$expec_value" != "$evald_value" ]; then
+                [ -n "$DEBUG" ] && printf "Error on line [%s]\nThe result of [eval %s] was [%s], expected [%s]\n" "$line" "$statement" "$evald_value" "$expec_value"
+                ERROR=1
+            fi
         fi
     done <"$1"
 
