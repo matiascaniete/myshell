@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 get_headers() {
-    curl --silent -I "$1"
+    curl --silent --fail --show-error -I "$1"
 }
 
 status() {
