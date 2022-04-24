@@ -29,7 +29,7 @@ check_ssl_certificate() {
 
 check_domains_from_file() {
     while read -r domain; do
-        check_ssl_certificate "$domain"
+        [ -n "$domain" ] && check_ssl_certificate "$domain"
     done <"$DOMAINS_FILE"
 }
 
