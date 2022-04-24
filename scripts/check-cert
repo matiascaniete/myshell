@@ -35,7 +35,7 @@ check_domains_from_file() {
 
 if [ "$1" ]; then
     check_ssl_certificate "$1"
-    return
+    exit
 fi
 
 [ ! -f "$DOMAINS_FILE" ] && DOMAINS_FILE=$DEFAULT_DOMAINS_FILE
