@@ -13,15 +13,17 @@ check_statements_from_file() {
                 evald_value="$(eval "$statement" 2>/dev/null | tr -d "\n\r")"
 
                 color=green
+                symbol="."
                 if [ "$expec_value" != "$evald_value" ]; then
                     [ -n "$DEBUG" ] && printf "Error on line [%s]\nThe result of [eval %s] was [%s], expected [%s]\n" "$line" "$statement" "$evald_value" "$expec_value"
                     ERROR=1
                     color=red
+                    symbol="!"
                 fi
 
-                printf '%s' "$(color $color .)"
+                printf '%s' "$(color $color $symbol)"
             else
-                printf '%s' "$(color yellow .)"
+                printf '%s' "$(color yellow "#")"
             fi
         fi
     done <"$1"
