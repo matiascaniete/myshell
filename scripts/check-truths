@@ -25,7 +25,7 @@ check_statements_from_file() {
 }
 
 check_statements_from_dir() {
-    for file in "$1"*; do
+    for file in "$1"/*; do
         [ -f "$file" ] && check_statements_from_file "$file"
     done
 }
