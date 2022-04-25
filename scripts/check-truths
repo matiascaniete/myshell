@@ -6,19 +6,23 @@ check_statements_from_file() {
     printf "Truths of [%s]\n" "$(basename "$1" | color cyan)"
 
     while read -r line; do
-        if [ -n "$line" ] && echo "$line" | grep -qvE '^#'; then
-            statement=$(echo "$line" | cut -d= -f1)
-            expec_value=$(echo "$line" | cut -d= -f2- | tr -d "\n\r")
-            evald_value="$(eval "$statement" 2>/dev/null | tr -d "\n\r")"
+        if [ -n "$line" ]; then
+            if echo "$line" | grep -qvE '^#'; then
+                statement=$(echo "$line" | cut -d= -f1)
+                expec_value=$(echo "$line" | cut -d= -f2- | tr -d "\n\r")
+                evald_value="$(eval "$statement" 2>/dev/null | tr -d "\n\r")"
 
-            color=green
-            if [ "$expec_value" != "$evald_value" ]; then
-                [ -n "$DEBUG" ] && printf "Error on line [%s]\nThe result of [eval %s] was [%s], expected [%s]\n" "$line" "$statement" "$evald_value" "$expec_value"
-                ERROR=1
-                color=red
+                color=green
+                if [ "$expec_value" != "$evald_value" ]; then
+                    [ -n "$DEBUG" ] && printf "Error on line [%s]\nThe result of [eval %s] was [%s], expected [%s]\n" "$line" "$statement" "$evald_value" "$expec_value"
+                    ERROR=1
+                    color=red
+                fi
+
+                printf '%s' "$(color $color .)"
+            else
+                printf '%s' "$(color yellow .)"
             fi
-
-            printf '%s' "$(color $color .)"
         fi
     done <"$1"
 
