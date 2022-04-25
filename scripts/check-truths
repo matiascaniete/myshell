@@ -20,7 +20,7 @@ check_statements_from_file() {
         fi
     done <"$1"
 
-    printf "\n%s\n" "$([ $ERROR = 1 ] && color red ERROR || color green SUCCESS)"
+    printf "%s\n" "$([ $ERROR = 1 ] && color red ERROR || color green SUCCESS)"
     return $ERROR
 }
 
