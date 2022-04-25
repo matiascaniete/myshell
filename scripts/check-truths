@@ -3,14 +3,14 @@
 check_statements_from_file() {
     ERROR=0
 
-    printf "Truths of [%s]\n" "$(basename "$1")"
+    printf "Truths of [%s]\n" "$(basename "$1" | color blue)"
 
     while read -r line; do
         if [ -n "$line" ]; then
             statement=$(echo "$line" | cut -d= -f1)
             expec_value=$(echo "$line" | cut -d= -f2- | tr -d "\n\r")
             evald_value="$(eval "$statement" 2>/dev/null | tr -d "\n\r")"
-            printf '.'
+            printf '.' | color gray
 
             # evald_value="https://test.fuckermate.com/"
             if [ "$expec_value" != "$evald_value" ]; then
@@ -20,7 +20,7 @@ check_statements_from_file() {
         fi
     done <"$1"
 
-    printf "%s\n" "$([ $ERROR = 1 ] && color red ERROR || color green SUCCESS)"
+    printf "%s\n" "$([ $ERROR = 1 ] && color red FAILED || color green SUCCEDED)"
     return $ERROR
 }
 
