@@ -3,7 +3,7 @@
 check_statements_from_file() {
     ERROR=0
 
-    printf "Checking truths of [%s]\n" "$1"
+    printf "Truths of [%s]\n" "$(basename "$1")"
 
     while read -r line; do
         if [ -n "$line" ]; then
