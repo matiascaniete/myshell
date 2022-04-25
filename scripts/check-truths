@@ -3,7 +3,7 @@
 check_statements_from_file() {
     ERROR=0
 
-    printf "[%s]:" "$1"
+    printf "Checking truths of [%s]\n" "$1"
 
     while read -r line; do
         if [ -n "$line" ]; then
@@ -20,7 +20,7 @@ check_statements_from_file() {
         fi
     done <"$1"
 
-    printf "%s\n" "$([ $ERROR = 1 ] && color red ERROR || color green SUCCESS)"
+    printf "\n%s\n" "$([ $ERROR = 1 ] && color red ERROR || color green SUCCESS)"
     return $ERROR
 }
 
