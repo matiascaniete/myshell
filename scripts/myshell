@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+BASE_PATH=$(dirname "$(realpath "$0")")
+
+update() {
+    cd "$BASE_PATH" && git pull
+}
+
+$@
