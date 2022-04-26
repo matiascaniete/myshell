@@ -28,10 +28,10 @@ check_statements_from_file() {
         fi
     done <"$1"
 
+    tput cuu1
     col=$(tput cols)
     tput hpa $((col - 7))
-    tput cuu1
-    printf "%s\n\n---\n" "$([ $ERROR = 1 ] && color red "FAILED" || color green "PASSED")"
+    printf "%s\n\n" "$([ $ERROR = 1 ] && color red "FAILED" || color green "PASSED")"
     return $ERROR
 }
 
