@@ -28,7 +28,7 @@ check_statements_from_file() {
         fi
     done <"$1"
 
-    printf "\n%s@%s\n" "$([ $ERROR = 1 ] && color red "FAILED" || color green "PASSED")" "$(date_formatted)"
+    printf "\n%s\n" "$([ $ERROR = 1 ] && color red "FAILED" || color green "PASSED")"
     return $ERROR
 }
 
@@ -44,11 +44,13 @@ check_statements_from_dir() {
 
 [ -f "$1" ] && {
     check_statements_from_file "$1"
+    date_formatted
     exit
 }
 
 [ -d "$1" ] && {
     check_statements_from_dir "$1"
+    date_formatted
     exit
 }
 
