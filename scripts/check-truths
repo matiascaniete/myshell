@@ -33,6 +33,7 @@ check_statements_from_file() {
 }
 
 date_formatted() {
+    echo
     date --rfc-3339=ns | cut -d. -f1
 }
 
