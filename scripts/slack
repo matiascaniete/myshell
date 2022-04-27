@@ -57,7 +57,7 @@ if [ -z "$MESSAGE" ] && read -rt0; then
     MESSAGE=$(cat)
 fi
 
-[ -z "$MESSAGE" ] && echo "No message given" && exit 1
+[ -z "$MESSAGE" ] && echo "A message must be given, either from positional argument or stdin." && exit 1
 
 # INVOKER=$(ps -ocmd= -p $PPID)
 FROM="$(whoami)@$(hostname)"
