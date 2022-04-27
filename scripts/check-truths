@@ -1,40 +1,42 @@
 #!/usr/bin/env sh
 
-# Description: Verifies a set of assertions with the form "statement command=expected value".
+# Description: Verifies a set of assertions with the form "statement command=expected value", one per line.
 
 check_statements_from_file() {
-    ERROR=0
+    error=0
+    line_number=0
 
-    printf "%s truths\n" "$(basename "$1" | color cyan)"
+    printf "CHECKING %s ...\n" "$(basename "$1" | tr '[:lower:]' '[:upper:]' | color cyan)" | info
 
     while read -r line; do
+        line_number=$((line_number + 1))
+        
         if [ -n "$line" ]; then
             if echo "$line" | grep -qvE '^#'; then
                 statement=$(echo "$line" | cut -d= -f1)
                 expec_value=$(echo "$line" | cut -d= -f2- | tr -d "\n\r")
                 evald_value="$(eval "$statement" 2>/dev/null | tr -d "\n\r")"
 
-                color=green
-                symbol="."
+                color_symbol="green ."
                 if [ "$expec_value" != "$evald_value" ]; then
-                    [ -n "$DEBUG" ] && printf "Error on line [%s]\nThe result of [eval %s] was [%s], expected [%s]\n" "$line" "$statement" "$evald_value" "$expec_value"
-                    ERROR=1
-                    color=red
-                    symbol="!"
+                    [ -n "$DEBUG" ] && printf "Error on file [%s][%s]\nCommand [eval %s]\nResult [%s]\nExpected [%s]\n" "$1" "$line_number" "$statement" "$evald_value" "$expec_value"
+                    error=1
+                    color_symbol="red !"
                 fi
 
-                printf '%s' "$(color $color $symbol)"
+                printf '%s' "$(color $color_symbol)" | info
             else
-                printf '%s' "$(color yellow "#")"
+                printf '%s' "$(color yellow '#')" | info
             fi
         fi
     done <"$1"
 
-    tput cuu1
-    col=$(tput cols)
-    tput hpa "$col"
-    printf "%s\n\n" "$([ $ERROR = 1 ] && color red "F" || color green "P")"
-    return $ERROR
+    printf "\n%s\n\n" "$([ $error = 1 ] && color red "FAILED" || color green "PASSED")" | info
+    return $error
+}
+
+info() {
+    cat >&2
 }
 
 date_formatted() {
@@ -42,20 +44,28 @@ date_formatted() {
 }
 
 check_statements_from_dir() {
+    GLOBAL_ERROR=0
+
     for file in "$1"/*; do
-        [ -f "$file" ] && check_statements_from_file "$file"
+        if [ -f "$file" ]; then
+            if ! check_statements_from_file "$file"; then
+                GLOBAL_ERROR=1
+            fi
+        fi
     done
+
+    return $GLOBAL_ERROR
 }
 
 [ -f "$1" ] && {
+    date_formatted | info
     check_statements_from_file "$1"
-    date_formatted
     exit
 }
 
 [ -d "$1" ] && {
+    date_formatted | info
     check_statements_from_dir "$1"
-    date_formatted
     exit
 }
 

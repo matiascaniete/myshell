@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Description: Sends message to slack channel.
+# Description: Sends message to slack channel from first positional argument or stdin.
 
 json_init() {
     TMP_FILE=$(mktemp)
@@ -53,7 +53,7 @@ while true; do
     esac
 done
 
-if [ -z "$MESSAGE" ] && read -rt0; then
+if [ -z "$MESSAGE" ]; then
     MESSAGE=$(cat)
 fi
 
@@ -71,4 +71,7 @@ json_set icon_emoji "$ICON"
 payload=$(cat "$TMP_FILE")
 json_destroy
 
-curl -X POST --silent --data-urlencode "payload=$payload" "$LOCAL_SLACK_WEBHOOK"
+response=$(curl -X POST --fail --show-error --silent --data-urlencode "payload=$payload" "$LOCAL_SLACK_WEBHOOK") || {
+    echo "Some error happened $response"
+    exit 1
+}
