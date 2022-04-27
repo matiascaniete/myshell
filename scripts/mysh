@@ -10,13 +10,13 @@ update() {
 
 description() {
     command="$1"
-    description=$(grep -iE "^#.Description:" "$BASE_PATH/$command" | grep -v "^#!" | cut -d: -f2-)
-    printf "Description of [%s]: %s\n" "$command" "$([ -n "$description" ] && echo "$description" || echo "No description found.")"
+    description=$(grep -iE "^#.Description:" "$BASE_PATH/$command" | grep -v "^#!" | cut -d: -f2- | xargs)
+    printf "%s: %s\n" "$command" "$([ -n "$description" ] && echo "$description" || echo "No description found.")"
     [ -n "$description" ]
 }
 
 list() {
-    find "$BASE_PATH" -type f | sort | xargs -n1 basename | xargs -n1 mysh description
+    (find "$BASE_PATH" -type f | sort | xargs -n1 basename | xargs -n1 mysh description) | column -s":" -t
 }
 
 $@
