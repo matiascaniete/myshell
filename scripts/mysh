@@ -6,4 +6,8 @@ update() {
     cd "$BASE_PATH" && git pull
 }
 
+list() {
+    find "$BASE_PATH" -type f | sort | xargs -n1 basename
+}
+
 $@
