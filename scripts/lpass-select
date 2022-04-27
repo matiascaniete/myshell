@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
-# shellcheck shell=sh
 
-# Show lastpass password selected from rofi or fzf
-# notify-send "SHLVL=$SHLVL"
+# Description: Show lastpass password selected from rofi or fzf.
 
-if [ $SHLVL == "1" ]; then
+if [ $SHLVL = "1" ]; then
     selector="rofi -dmenu"
     display="rofi -e"
     lpscolor="--color=never"
@@ -34,4 +32,3 @@ case "${result}" in
     ;;
 *) ;;
 esac
-

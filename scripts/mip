@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-# get my public ip
+# Description: Get my public IP.
+
 curl ifconfig.me

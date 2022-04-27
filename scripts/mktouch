@@ -1,3 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
+
+# Description: mkdir -p and touch combined.
 
 mkdir -p "$(dirname "$1")" && touch "$1"

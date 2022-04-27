@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-# empty trash
+# Description: Empty the trash.
+
 gio trash --empty

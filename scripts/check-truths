@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+# Description: Verifies a set of assertions with the form "statement command=expected value".
+
 check_statements_from_file() {
     ERROR=0
 

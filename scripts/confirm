@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+# Description: Ask for confirmation to the user and returns 0 if yes, 1 otherwise.
+
 lower() {
     echo "$1" | tr '[:upper:]' '[:lower:]'
 }

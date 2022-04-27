@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+# Description: Checks SSL certificates for domains
+
 DOMAINS_FILE=$CHECK_CERT_DOMAINS_FILE
 DEFAULT_DOMAINS_FILE=~/.config/check-cert/domains
 

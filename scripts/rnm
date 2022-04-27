@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-# restart network manager
+# Description: Restart network manager (systemctl).
+
 sudo systemctl restart network-manager

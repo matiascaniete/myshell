@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-# select command from history and copy it to clipboard
+# Description: Selects command from history and copy it to clipboard.
 
 HISTFILE=~/.zsh_history
 

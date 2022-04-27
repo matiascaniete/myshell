@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# shellcheck shell=sh
+
+# Description: Separate multi-camera footages by date.
 
 INPUT_PATH="$1"
 OUTPUT_PATH="$2"

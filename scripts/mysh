@@ -1,13 +1,22 @@
 #!/usr/bin/env sh
 
+# Description: myshell manager.
+
 BASE_PATH=$(dirname "$(realpath "$0")")
 
 update() {
     cd "$BASE_PATH" && git pull
 }
 
+description() {
+    command="$1"
+    description=$(grep -iE "^#.Description:" "$BASE_PATH/$command" | grep -v "^#!" | cut -d: -f2-)
+    printf "Description of [%s]: %s\n" "$command" "$([ -n "$description" ] && echo "$description" || echo "No description found.")"
+    [ -n "$description" ]
+}
+
 list() {
-    find "$BASE_PATH" -type f | sort | xargs -n1 basename
+    find "$BASE_PATH" -type f | sort | xargs -n1 basename | xargs -n1 mysh description
 }
 
 $@

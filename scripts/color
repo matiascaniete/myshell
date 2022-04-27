@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Description: Colorize text from argument or stdin.
+
 reset=$(tput op)
 
 declare -A COLORS

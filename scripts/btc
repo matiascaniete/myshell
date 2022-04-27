@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Description: Returns bitcoin value from Nomics API.
+
 KEY_FILE="$HOME/.config/btc/key"
 
 if [ ! -f "$KEY_FILE" ]; then
@@ -10,5 +12,4 @@ fi
 KEY=$(cat "$KEY_FILE")
 URL="https://api.nomics.com/v1/currencies/ticker?key=$KEY&ids=BTC&interval=1h&convert=EUR"
 
-#curl --silent "$URL" | jq -r ".[0].price" | cut -d "." -f 1
 curl --silent "$URL" | jq -r ".[0].price"
