@@ -12,6 +12,7 @@ send() {
 listen() {
     sudo bash -c "socat - tcp4-listen:$RASP_SCREEN_PORT,fork > /dev/tty1" &
     disown
+    printf "Listening on port %s\n" "$RASP_SCREEN_PORT"
 }
 
 $@
