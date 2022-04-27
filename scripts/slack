@@ -2,15 +2,27 @@
 
 # Description: Sends message to slack channel.
 
-MESSAGE="$1"
+json_init() {
+    TMP_FILE=$(mktemp)
+    echo "{}" >"$TMP_FILE"
+}
+
+json_set() {
+    key="$1"
+    value=${*:2}
+
+    content=$(jq ".$key = \"$value\"" "$TMP_FILE") && echo "$content" >"$TMP_FILE"
+}
+
+json_destroy() {
+    rm "$TMP_FILE"
+}
+
+[ ! "$LOCAL_SLACK_WEBHOOK" ] && echo "LOCAL_SLACK_WEBHOOK environment variable is not defined" && exit 1
+
 CHANNEL="#general"
 USERNAME=""
 ICON=":computer:"
-
-if [ ! "$LOCAL_SLACK_WEBHOOK" ]; then
-    echo "LOCAL_SLACK_WEBHOOK environment variable is not defined"
-    exit 1
-fi
 
 options=$(getopt --long channel:,username:,icon: --options "" -- "$@")
 eval set -- "$options"
@@ -41,32 +53,22 @@ while true; do
     esac
 done
 
-json_init() {
-    TMP_FILE=$(mktemp)
-    echo "{}" >"$TMP_FILE"
-}
+if [ -z "$MESSAGE" ] && read -rt0; then
+    MESSAGE=$(cat)
+fi
 
-json_set() {
-    key="$1"
-    value=${*:2}
+[ -z "$MESSAGE" ] && echo "No message given" && exit 1
 
-    content=$(jq ".$key = \"$value\"" "$TMP_FILE") && echo "$content" >"$TMP_FILE"
-}
-
-json_destroy() {
-    rm "$TMP_FILE"
-}
-
-INVOKER=$(ps -ocmd= -p $PPID)
+# INVOKER=$(ps -ocmd= -p $PPID)
 FROM="$(whoami)@$(hostname)"
-MESSAGE="$MESSAGE\n\nEnviado desde $FROM:$0 ($INVOKER)"
+MESSAGE="\`\`\`$MESSAGE\`\`\`\n>Sent from *$FROM*\n>_$0_"
 
 json_init
 json_set channel "$CHANNEL"
 json_set username "${USERNAME:-$FROM}"
 json_set text "$MESSAGE"
 json_set icon_emoji "$ICON"
-
-curl -X POST --silent --data-urlencode "payload=$(cat "$TMP_FILE")" "$LOCAL_SLACK_WEBHOOK"
-
+payload=$(cat "$TMP_FILE")
 json_destroy
+
+curl -X POST --silent --data-urlencode "payload=$payload" "$LOCAL_SLACK_WEBHOOK"
