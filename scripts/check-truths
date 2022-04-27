@@ -31,7 +31,7 @@ check_statements_from_file() {
         fi
     done <"$1"
 
-    printf "\n%s\n\n" "$([ $error = 1 ] && color red "FAILED" || color green "PASSED")" | info
+    printf "\n%s\n" "$([ $error = 1 ] && color red "FAILED" || color green "PASSED")" | info
     return $error
 }
 
