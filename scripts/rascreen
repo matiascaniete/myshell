@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Description: Send to Raspberry LCD screen thru tcp socket
+# Description: Send to Raspberry LCD screen thru tcp socket. Either a string or command as first argument or message from stdin
 
 RASP_SCREEN_IP=192.168.0.23
 RASP_SCREEN_PORT=8000
