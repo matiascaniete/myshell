@@ -11,11 +11,10 @@ send() {
 
     if [ -n "$args" ]; then
         type "$possible_command" 2>/dev/null >&2 && message=$(eval "$args") || message="$args"
+        echo "$message" | socat - tcp:$RASP_SCREEN_IP:$RASP_SCREEN_PORT
     else
-        message=$(cat)
+        socat - tcp:$RASP_SCREEN_IP:$RASP_SCREEN_PORT
     fi
-
-    echo "$message" | socat - tcp:$RASP_SCREEN_IP:$RASP_SCREEN_PORT
 }
 
 listen() {
