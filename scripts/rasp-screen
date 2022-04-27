@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+RASP_SCREEN_IP=192.168.0.23
+RASP_SCREEN_PORT=8000
+
+send() {
+    cat | socat - tcp:$RASP_SCREEN_IP:$RASP_SCREEN_PORT
+}
+
+listen() {
+    sudo bash -c "socat - tcp4-listen:$RASP_SCREEN_PORT,fork > /dev/tty1"
+}
+
+$@
