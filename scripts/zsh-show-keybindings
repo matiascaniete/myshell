@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-# Description: Show zsh keybindings
+# Description: Show zsh keybindings.
 
 (
     cat <<EOF
