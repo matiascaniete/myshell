@@ -6,14 +6,20 @@ RASP_SCREEN_IP=192.168.0.23
 RASP_SCREEN_PORT=8000
 
 send() {
-    cat | socat - tcp:$RASP_SCREEN_IP:$RASP_SCREEN_PORT
+    args=$@
+    possible_command="$1"
+
+    if [ -n "$args" ]; then
+        type "$possible_command" >/dev/null && message=$(eval "$args") || message="$args"
+    else
+        message=$(cat)
+    fi
+
+    echo "$message" | socat - tcp:$RASP_SCREEN_IP:$RASP_SCREEN_PORT
 }
 
 listen() {
-    sudo bash -c "socat - tcp4-listen:$RASP_SCREEN_PORT,fork > /dev/tty1" &
-    disown
-    printf "Listening on port %s\n" "$RASP_SCREEN_PORT"
-    printf "Listening on port %s\n" "$RASP_SCREEN_PORT" | send
+    { sudo bash -c "socat - tcp4-listen:$RASP_SCREEN_PORT,fork > /dev/tty1" & } && disown && printf "Listening on port %s\n" "$RASP_SCREEN_PORT"
 }
 
-$@
+[ "$1" = "listen" ] && listen || send $@
