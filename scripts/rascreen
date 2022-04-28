@@ -1,28 +1,32 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Description: Send to Raspberry LCD screen thru tcp socket. Either a string or command as first argument or message from stdin.
 
-RASP_SCREEN_HOST=rasp.local
-RASP_SCREEN_PORT=8000
+RASCREEN_HOST=${RASCREEN_HOST:-raspberrypi.local}
+RASCREEN_PORT=${RASCREEN_PORT:-8000}
+RASCREEN_TTY=${RASCREEN_TTY:-/dev/tty1}
 
 send() {
     args=$@
     possible_command="$1"
 
     if [ -n "$args" ]; then
-        type "$possible_command" 2>/dev/null >&2 && { eval "$args" | to_socat; } || { echo "$args" | to_socat; }
+        if type "$possible_command" 2>/dev/null >&2; then
+            eval "$args" | to_socat
+        else
+            echo "$args" | to_socat
+        fi
     else
         to_socat
     fi
 }
 
 to_socat() {
-
-    socat -t10 - tcp:$RASP_SCREEN_HOST:$RASP_SCREEN_PORT
+    socat -t10 - tcp:"$RASCREEN_HOST":"$RASCREEN_PORT"
 }
 
 listen() {
-    { sudo bash -c "socat -t10 - tcp4-listen:$RASP_SCREEN_PORT,fork > /dev/tty1" & } && disown && printf "Listening on port %s\n" "$RASP_SCREEN_PORT"
+    { sudo bash -c "socat -t10 - tcp4-listen:$RASCREEN_PORT,fork > $RASCREEN_TTY" & } && disown && printf "Listening on port %s\n" "$RASP_SCREEN_PORT"
 }
 
-[ "$1" = "listen" ] && listen || send $@
+if [ "$1" = "listen" ]; then listen; else send $@; fi
