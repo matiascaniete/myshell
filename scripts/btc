@@ -3,6 +3,7 @@
 # Description: Returns bitcoin value from Nomics API.
 
 KEY_FILE="$HOME/.config/btc/key"
+IDS=${1:-BTC}
 
 if [ -n "$BTC_NOMICS_API_KEY" ]; then
     KEY=$BTC_NOMICS_API_KEY
@@ -12,7 +13,7 @@ fi
 
 [ -z "$KEY" ] && echo "You must provide an BTC_NOMICS_API_KEY from either environment variable or file at [$KEY_FILE]" && exit 1
 
-URL="https://api.nomics.com/v1/currencies/ticker?key=$KEY&ids=BTC&interval=1h&convert=EUR"
+URL="https://api.nomics.com/v1/currencies/ticker?key=$KEY&ids=$IDS&interval=1h&convert=EUR"
 
 response=$(curl --silent "$URL")
 
