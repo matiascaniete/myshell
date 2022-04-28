@@ -23,7 +23,7 @@ check_statements_from_file() {
                         printf "Error on [%s (%s)]\n" "$1" "$line_number"
                         printf "Command  [eval %s]\n" "$statement"
                         printf "Result   [%s]\n" "$evald_value"
-                        printf "Expected [%s]\n" "$expec_value"
+                        printf "Expected [%s]\n\n" "$expec_value"
                     }
                     error=1
                     color_symbol="red !"
