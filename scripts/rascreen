@@ -1,9 +1,10 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Description: Send to Raspberry LCD screen thru tcp socket. Either a string or command as first argument or message from stdin.
 
 RASCREEN_HOST=${RASCREEN_HOST:-raspberrypi.local}
 RASCREEN_PORT=${RASCREEN_PORT:-8000}
+RASCREEN_TTY=${RASCREEN_TTY:-/dev/tty1}
 
 send() {
     args=$@
@@ -21,7 +22,7 @@ to_socat() {
 }
 
 listen() {
-    { sudo bash -c "socat -t10 - tcp4-listen:$RASCREEN_PORT,fork > /dev/tty1" & } && disown && printf "Listening on port %s\n" "$RASP_SCREEN_PORT"
+    { sudo bash -c "socat -t10 - tcp4-listen:$RASCREEN_PORT,fork > $RASCREEN_TTY" & } && disown && printf "Listening on port %s\n" "$RASP_SCREEN_PORT"
 }
 
 [ "$1" = "listen" ] && listen || send $@
