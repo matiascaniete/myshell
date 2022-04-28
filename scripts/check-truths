@@ -10,7 +10,7 @@ check_statements_from_file() {
 
     while read -r line; do
         line_number=$((line_number + 1))
-        
+
         if [ -n "$line" ]; then
             if echo "$line" | grep -qvE '^#'; then
                 statement=$(echo "$line" | cut -d= -f1)
@@ -24,14 +24,16 @@ check_statements_from_file() {
                     color_symbol="red !"
                 fi
 
-                printf '%s' "$(color $color_symbol)" | info
             else
-                printf '%s' "$(color yellow '#')" | info
+                color_symbol="yellow #"
             fi
+            
+            printf '%s' "$(color $color_symbol)" | info
         fi
     done <"$1"
 
-    printf "\n%s\n" "$([ $error = 1 ] && color red "FAILED" || color green "PASSED")" | info
+    color_message=$([ $error = 1 ] && echo "red FAILED" || echo "green PASSED")
+    printf "\n%s\n" "$(color $color_message)" | info
     return $error
 }
 

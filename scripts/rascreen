@@ -11,7 +11,11 @@ send() {
     possible_command="$1"
 
     if [ -n "$args" ]; then
-        type "$possible_command" 2>/dev/null >&2 && { eval "$args" | to_socat; } || { echo "$args" | to_socat; }
+        if type "$possible_command" 2>/dev/null >&2; then
+            eval "$args" | to_socat
+        else
+            echo "$args" | to_socat
+        fi
     else
         to_socat
     fi
@@ -25,4 +29,4 @@ listen() {
     { sudo bash -c "socat -t10 - tcp4-listen:$RASCREEN_PORT,fork > $RASCREEN_TTY" & } && disown && printf "Listening on port %s\n" "$RASP_SCREEN_PORT"
 }
 
-[ "$1" = "listen" ] && listen || send $@
+if [ "$1" = "listen" ]; then listen; else send $@; fi
