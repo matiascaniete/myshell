@@ -2,7 +2,7 @@
 
 # Description: Send to Raspberry LCD screen thru tcp socket. Either a string or command as first argument or message from stdin.
 
-RASP_SCREEN_IP=192.168.0.23
+RASP_SCREEN_HOST=rasp.local
 RASP_SCREEN_PORT=8000
 
 send() {
@@ -11,14 +11,14 @@ send() {
 
     if [ -n "$args" ]; then
         type "$possible_command" 2>/dev/null >&2 && message=$(eval "$args") || message="$args"
-        echo "$message" | socat - tcp:$RASP_SCREEN_IP:$RASP_SCREEN_PORT
+        echo "$message" | socat - tcp:$RASP_SCREEN_HOST:$RASP_SCREEN_PORT
     else
-        socat - tcp:$RASP_SCREEN_IP:$RASP_SCREEN_PORT
+        socat -t10 - tcp:$RASP_SCREEN_HOST:$RASP_SCREEN_PORT
     fi
 }
 
 listen() {
-    { sudo bash -c "socat - tcp4-listen:$RASP_SCREEN_PORT,fork > /dev/tty1" & } && disown && printf "Listening on port %s\n" "$RASP_SCREEN_PORT"
+    { sudo bash -c "socat -t10 - tcp4-listen:$RASP_SCREEN_PORT,fork > /dev/tty1" & } && disown && printf "Listening on port %s\n" "$RASP_SCREEN_PORT"
 }
 
 [ "$1" = "listen" ] && listen || send $@
