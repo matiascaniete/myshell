@@ -1,15 +1,24 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Description: Returns bitcoin value from Nomics API.
 
 KEY_FILE="$HOME/.config/btc/key"
 
-if [ ! -f "$KEY_FILE" ]; then
-    echo "$KEY_FILE not exist"
-    exit 1
+if [ -n "$BTC_NOMICS_API_KEY" ]; then
+    KEY=$BTC_NOMICS_API_KEY
+else
+    [ -f "$KEY_FILE" ] && KEY=$(cat "$KEY_FILE")
 fi
 
-KEY=$(cat "$KEY_FILE")
+[ -z "$KEY" ] && echo "You must provide an BTC_NOMICS_API_KEY from either environment variable or file at [$KEY_FILE]" && exit 1
+
 URL="https://api.nomics.com/v1/currencies/ticker?key=$KEY&ids=BTC&interval=1h&convert=EUR"
 
-curl --silent "$URL" | jq -r ".[0].price"
+response=$(curl --silent "$URL")
+
+if echo "$response" | grep -q 'Authentication failed'; then
+    echo "Some error ocurred: $response"
+    exit 1
+else
+    echo "$response" | jq -r ".[0].price"
+fi
