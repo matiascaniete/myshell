@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Description: Send to Raspberry LCD screen thru tcp socket. Either a string or command as first argument or message from stdin.
 
@@ -10,11 +10,15 @@ send() {
     possible_command="$1"
 
     if [ -n "$args" ]; then
-        type "$possible_command" 2>/dev/null >&2 && message=$(eval "$args") || message="$args"
-        echo "$message" | socat - tcp:$RASP_SCREEN_HOST:$RASP_SCREEN_PORT
+        type "$possible_command" 2>/dev/null >&2 && { eval "$args" | to_socat; } || { echo "$args" | to_socat; }
     else
-        socat -t10 - tcp:$RASP_SCREEN_HOST:$RASP_SCREEN_PORT
+        to_socat
     fi
+}
+
+to_socat() {
+
+    socat -t10 - tcp:$RASP_SCREEN_HOST:$RASP_SCREEN_PORT
 }
 
 listen() {
