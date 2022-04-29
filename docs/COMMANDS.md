@@ -1,22 +1,22 @@
 # List of commands
 
-- **btc**: Returns bitcoin (or any crypto) value from Nomics API.
-- **check-cert**: Checks SSL certificates for domains
-- **check-truths**: Verifies a set of assertions with the form statement command=expected value, one per line.
-- **cht**: Show cheat sheet of a command from cheat.sh.
-- **clima**: Get forecast for Barcelona.
-- **clp**: Selects command from history and copy it to clipboard.
-- **color**: Colorize text from argument or stdin.
-- **confirm**: Ask for confirmation to the user and returns 0 if yes, 1 otherwise.
-- **et**: Empty the trash.
-- **headers**: Get all headers, status or location of an url.
-- **lpass-select**: Show lastpass password selected from rofi or fzf.
-- **mip**: Get my public IP.
-- **mktouch**: mkdir -p and touch combined.
-- **mysh**: myshell manager.
-- **rascreen**: Send to Raspberry LCD screen thru tcp socket. Either a string or command as first argument or message from stdin.
-- **rgf**: ripgrep thru fzf.
-- **rnm**: Restart network manager (systemctl).
-- **slack**: Sends message to slack channel from first positional argument or stdin.
-- **split-footages**: Separate multi-camera footages by date.
-- **zsh-show-keybindings**: Show zsh keybindings.
+- **[btc](https://github.com/matiascaniete/myshell/blob/main/scripts/btc)**: Returns bitcoin (or any crypto) value from Nomics API.
+- **[check-cert](https://github.com/matiascaniete/myshell/blob/main/scripts/check-cert)**: Checks SSL certificates for domains
+- **[check-truths](https://github.com/matiascaniete/myshell/blob/main/scripts/check-truths)**: Verifies a set of assertions with the form statement command=expected value, one per line of a file or directory.
+- **[cht](https://github.com/matiascaniete/myshell/blob/main/scripts/cht)**: Show cheat sheet of a command from cheat.sh.
+- **[clima](https://github.com/matiascaniete/myshell/blob/main/scripts/clima)**: Get forecast for Barcelona.
+- **[clp](https://github.com/matiascaniete/myshell/blob/main/scripts/clp)**: Selects command from history and copy it to clipboard.
+- **[color](https://github.com/matiascaniete/myshell/blob/main/scripts/color)**: Colorize text from argument or stdin.
+- **[confirm](https://github.com/matiascaniete/myshell/blob/main/scripts/confirm)**: Ask for confirmation to the user and returns 0 if yes, 1 otherwise.
+- **[et](https://github.com/matiascaniete/myshell/blob/main/scripts/et)**: Empty the trash.
+- **[headers](https://github.com/matiascaniete/myshell/blob/main/scripts/headers)**: Get all headers, status or location of an url.
+- **[lpass-select](https://github.com/matiascaniete/myshell/blob/main/scripts/lpass-select)**: Show lastpass password selected from rofi or fzf.
+- **[mip](https://github.com/matiascaniete/myshell/blob/main/scripts/mip)**: Get my public IP.
+- **[mktouch](https://github.com/matiascaniete/myshell/blob/main/scripts/mktouch)**: mkdir -p and touch combined.
+- **[mysh](https://github.com/matiascaniete/myshell/blob/main/scripts/mysh)**: myshell manager.
+- **[rascreen](https://github.com/matiascaniete/myshell/blob/main/scripts/rascreen)**: Send to Raspberry LCD screen thru tcp socket. Either a string or command as first argument or message from stdin.
+- **[rgf](https://github.com/matiascaniete/myshell/blob/main/scripts/rgf)**: ripgrep thru fzf.
+- **[rnm](https://github.com/matiascaniete/myshell/blob/main/scripts/rnm)**: Restart network manager (systemctl).
+- **[slack](https://github.com/matiascaniete/myshell/blob/main/scripts/slack)**: Sends message to slack channel from first positional argument or stdin.
+- **[split-footages](https://github.com/matiascaniete/myshell/blob/main/scripts/split-footages)**: Separate multi-camera footages by date.
+- **[zsh-show-keybindings](https://github.com/matiascaniete/myshell/blob/main/scripts/zsh-show-keybindings)**: Show zsh keybindings.
