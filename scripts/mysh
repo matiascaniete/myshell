@@ -8,15 +8,37 @@ update() {
     cd "$BASE_PATH" && git pull
 }
 
+dp_plain() {
+    printf '%s: %s\n' "$1" "$([ -n "$2" ] && echo "$2" || echo "No description found.")"
+}
+
+dp_markdown() {
+    printf '**%s**: %s\n' "$1" "$([ -n "$2" ] && echo "$2" || echo "No description found.")"
+}
+
 description() {
     command="$1"
+    printer=${2:-dp_plain}
     description=$(grep -iE "^#.Description:" "$BASE_PATH/$command" | grep -v "^#!" | cut -d: -f2- | xargs)
-    printf "%s: %s\n" "$command" "$([ -n "$description" ] && echo "$description" || echo "No description found.")"
+    eval "$printer '$command' '$description'"
     [ -n "$description" ]
 }
 
+raw_list() {
+    find "$BASE_PATH" -type f | sort | xargs -n1 basename | xargs -I{} mysh description {} "$1"
+}
+
 list() {
-    (find "$BASE_PATH" -type f | sort | xargs -n1 basename | xargs -n1 mysh description) | column -s":" -t
+    raw_list dp_plain | column -s":" -t
+}
+
+md() {
+    printf "# List of commands\n\n"
+    { raw_list dp_markdown | xargs -I{} printf '- %s\n' {}; }
+}
+
+md2doc() {
+    md | tee "$BASE_PATH/../docs/COMMANDS.md"
 }
 
 $@

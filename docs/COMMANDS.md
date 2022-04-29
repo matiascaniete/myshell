@@ -1,39 +1,22 @@
-btc                    Returns bitcoin value from Nomics API.
+# List of commands
 
-check-cert             Checks SSL certificates for domains
-
-check-truths           Verifies a set of assertions with the form statement command=expected value, one per line.
-
-cht                    No description found.
-
-clima                  Get forecast for Barcelona.
-
-clp                    Selects command from history and copy it to clipboard.
-
-color                  Colorize text from argument or stdin.
-
-confirm                Ask for confirmation to the user and returns 0 if yes, 1 otherwise.
-
-et                     Empty the trash.
-
-headers                Get all headers, status or location of a url.
-
-lpass-select           Show lastpass password selected from rofi or fzf.
-
-mip                    Get my public IP.
-
-mktouch                mkdir -p and touch combined.
-
-mysh                   myshell manager.
-
-rascreen               Send to Raspberry LCD screen thru tcp socket. Either a string or command as first argument or message from stdin.
-
-rgf                    rg thru fzf.
-
-rnm                    Restart network manager (systemctl).
-
-slack                  Sends message to slack channel from first positional argument or stdin.
-
-split-footages         Separate multi-camera footages by date.
-
-zsh-show-keybindings   Show zsh keybindings.
+- **btc**: Returns bitcoin (or any crypto) value from Nomics API.
+- **check-cert**: Checks SSL certificates for domains
+- **check-truths**: Verifies a set of assertions with the form statement command=expected value, one per line.
+- **cht**: Show cheat sheet of a command from cheat.sh.
+- **clima**: Get forecast for Barcelona.
+- **clp**: Selects command from history and copy it to clipboard.
+- **color**: Colorize text from argument or stdin.
+- **confirm**: Ask for confirmation to the user and returns 0 if yes, 1 otherwise.
+- **et**: Empty the trash.
+- **headers**: Get all headers, status or location of an url.
+- **lpass-select**: Show lastpass password selected from rofi or fzf.
+- **mip**: Get my public IP.
+- **mktouch**: mkdir -p and touch combined.
+- **mysh**: myshell manager.
+- **rascreen**: Send to Raspberry LCD screen thru tcp socket. Either a string or command as first argument or message from stdin.
+- **rgf**: ripgrep thru fzf.
+- **rnm**: Restart network manager (systemctl).
+- **slack**: Sends message to slack channel from first positional argument or stdin.
+- **split-footages**: Separate multi-camera footages by date.
+- **zsh-show-keybindings**: Show zsh keybindings.

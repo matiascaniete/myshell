@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 
-# cheat.sh
-curl "cheat.sh/$1" | "$PAGER"
+# Description: Show cheat sheet of a command from cheat.sh.
+
+curl --silent "cheat.sh/$1" | "$PAGER"

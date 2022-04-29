@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-# Description: Get all headers, status or location of a url.
+# Description: Get all headers, status or location of an url.
 
 get_headers() {
     curl --silent --show-error -I "$1"

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-# Description: Returns bitcoin value from Nomics API.
+# Description: Returns bitcoin (or any crypto) value from Nomics API.
 
 KEY_FILE="$HOME/.config/btc/key"
 IDS=${1:-BTC}
