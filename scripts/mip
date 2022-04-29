@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Description: Get my public IP.
 
-curl ifconfig.me
+printf '%s\n' "$(curl --silent ifconfig.me)"
