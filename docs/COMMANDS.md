@@ -1,7 +1,6 @@
 # List of commands
 
 - **[btc](https://github.com/matiascaniete/myshell/blob/main/scripts/btc)**: Returns bitcoin (or any crypto) value from Nomics API.
-- **[check-cert](https://github.com/matiascaniete/myshell/blob/main/scripts/check-cert)**: Checks SSL certificates for domains
 - **[check-truths](https://github.com/matiascaniete/myshell/blob/main/scripts/check-truths)**: Verifies a set of assertions with the form statement command=expected value, one per line of a file or directory.
 - **[cht](https://github.com/matiascaniete/myshell/blob/main/scripts/cht)**: Show cheat sheet of a command from cheat.sh.
 - **[clima](https://github.com/matiascaniete/myshell/blob/main/scripts/clima)**: Get forecast for Barcelona.
@@ -19,4 +18,5 @@
 - **[rnm](https://github.com/matiascaniete/myshell/blob/main/scripts/rnm)**: Restart network manager (systemctl).
 - **[slack](https://github.com/matiascaniete/myshell/blob/main/scripts/slack)**: Sends message to slack channel from first positional argument or stdin.
 - **[split-footages](https://github.com/matiascaniete/myshell/blob/main/scripts/split-footages)**: Separate multi-camera footages by date.
+- **[sslcc](https://github.com/matiascaniete/myshell/blob/main/scripts/sslcc)**: Checks SSL certificates for domains
 - **[zsh-show-keybindings](https://github.com/matiascaniete/myshell/blob/main/scripts/zsh-show-keybindings)**: Show zsh keybindings.
