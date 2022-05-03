@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Description: Verifies a set of assertions with the form "statement command=expected value", one per line of a file or directory.
 
@@ -54,7 +54,7 @@ check_statements_from_dir() {
     GLOBAL_ERROR=0
 
     for file in "$1"/*; do
-        if [ -f "$file" ]; then
+        if [ -f "$file" ] && [[ ! $(basename "$file") =~ ^_ ]]; then
             if ! check_statements_from_file "$file"; then
                 GLOBAL_ERROR=1
             fi
