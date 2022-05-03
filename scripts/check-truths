@@ -15,7 +15,7 @@ check_statements_from_file() {
             if echo "$line" | grep -qvE '^#'; then
                 statement=$(echo "$line" | cut -d= -f1)
                 expec_value=$(echo "$line" | cut -d= -f2- | tr -d "\n\r")
-                evald_value="$(eval "$statement" 2>/dev/null | tr -d "\n\r")"
+                evald_value="$(eval "$statement" 2>&1 | tr -d "\n\r")"
 
                 color_symbol="green ."
                 if [ "$expec_value" != "$evald_value" ]; then
