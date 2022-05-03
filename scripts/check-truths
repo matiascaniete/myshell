@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Description: Verifies a set of assertions with the form "statement command=expected value", one per line of a file or directory.
+# Description: Verifies a set of assertions with the form "statement command=expected value", one per line of a file or directory. Ignores files starting with _, and line started with \#
 
 check_statements_from_file() {
     error=0
