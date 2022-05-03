@@ -2,8 +2,10 @@
 
 # Description: Get all headers, status or location of an url.
 
+HEADER_MAX_TIMEOUT=3
+
 get_headers() {
-    curl --silent --show-error --connect-timeout 5 -I "$1"
+    curl --silent --show-error --connect-timeout $HEADER_MAX_TIMEOUT -I "$1"
 }
 
 status() {
