@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Description: myshell manager.
 
@@ -40,6 +40,16 @@ md() {
 
 md2doc() {
     md | tee "$BASE_PATH/../docs/COMMANDS.md"
+}
+
+if [ -z "$1" ]; then
+    printf "No sub-command was given\n" && exit 1
+fi
+
+[[ ! $(type -t "$1" 2>/dev/null) =~ function ]] && {
+    printf "Sub-command [%s] not found!\nMaybe you mean:\n" "$1"
+    declare -F | cut -d " " -f3- | fzf --filter "$1" | xargs -n1 printf "%s %s\n" "$(basename "$0")"
+    exit 1
 }
 
 $@
