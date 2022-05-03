@@ -3,7 +3,7 @@
 # Description: Get all headers, status or location of an url.
 
 get_headers() {
-    curl --silent --show-error -I "$1"
+    curl --silent --show-error ----connect-timeout 5 -I "$1"
 }
 
 status() {
