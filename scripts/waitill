@@ -3,12 +3,14 @@
 # Description: Ask for confirmation to end the program by pressing some defined key (q by default).
 
 key=${1:-Q}
+message=${2:-"Press [%s] to exit"}
 
 lower() {
     echo "$1" | tr '[:upper:]' '[:lower:]'
 }
 
-echo "Press [$key] to exit"
+# shellcheck disable=SC2059
+printf "$message\n" "$key"
 
 while :; do
     read -r -n 1 k <&1
