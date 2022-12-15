@@ -1,0 +1,18 @@
+#! /bin/env bash
+
+# Description: Ask for confirmation to end the program by pressing some defined key (q by default).
+
+key=${1:-Q}
+
+lower() {
+    echo "$1" | tr '[:upper:]' '[:lower:]'
+}
+
+echo "Press [$key] to exit"
+
+while :; do
+    read -r -n 1 k <&1
+    if [[ $(lower "$k") = $(lower "$key") ]]; then
+        break
+    fi
+done
