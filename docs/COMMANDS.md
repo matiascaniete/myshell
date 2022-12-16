@@ -8,7 +8,7 @@
 - **[color](https://github.com/matiascaniete/myshell/blob/main/scripts/color)**: Colorize text from argument or stdin.
 - **[confirm](https://github.com/matiascaniete/myshell/blob/main/scripts/confirm)**: Ask for confirmation to the user and returns 0 if yes, 1 otherwise.
 - **[et](https://github.com/matiascaniete/myshell/blob/main/scripts/et)**: Empty the trash.
-- **[gcop](https://github.com/matiascaniete/myshell/blob/main/scripts/gcop)**: No description found.
+- **[gcop](https://github.com/matiascaniete/myshell/blob/main/scripts/gcop)**: Git commits on FZF
 - **[header](https://github.com/matiascaniete/myshell/blob/main/scripts/header)**: Get all headers, status or location of an url.
 - **[hs](https://github.com/matiascaniete/myshell/blob/main/scripts/hs)**: Home FZF search
 - **[lpass-select](https://github.com/matiascaniete/myshell/blob/main/scripts/lpass-select)**: Show lastpass password selected from rofi or fzf.
