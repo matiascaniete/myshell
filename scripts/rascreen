@@ -26,7 +26,7 @@ to_socat() {
 }
 
 listen() {
-    { sudo bash -c "socat -t10 - tcp4-listen:$RASCREEN_PORT,fork > $RASCREEN_TTY" & } && disown && printf "Listening on port %s\n" "$RASP_SCREEN_PORT"
+    { sudo bash -c "socat -t10 - tcp4-listen:$RASCREEN_PORT,fork > $RASCREEN_TTY" & } && disown && printf "Listening on port %s\n" "$RASCREEN_PORT"
 }
 
 if [ "$1" = "listen" ]; then listen; else send $@; fi
