@@ -9,6 +9,7 @@
 - **[confirm](https://github.com/matiascaniete/myshell/blob/main/scripts/confirm)**: Ask for confirmation to the user and returns 0 if yes, 1 otherwise.
 - **[et](https://github.com/matiascaniete/myshell/blob/main/scripts/et)**: Empty the trash.
 - **[header](https://github.com/matiascaniete/myshell/blob/main/scripts/header)**: Get all headers, status or location of an url.
+- **[hs](https://github.com/matiascaniete/myshell/blob/main/scripts/hs)**: Home FZF search
 - **[lpass-select](https://github.com/matiascaniete/myshell/blob/main/scripts/lpass-select)**: Show lastpass password selected from rofi or fzf.
 - **[mip](https://github.com/matiascaniete/myshell/blob/main/scripts/mip)**: Get my public IP.
 - **[mktouch](https://github.com/matiascaniete/myshell/blob/main/scripts/mktouch)**: mkdir -p and touch combined.

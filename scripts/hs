@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# Description: Home FZF search
+
+preview() {
+    if [ -f "$*" ]; then
+        bat --color always "$*"
+        return
+    fi
+
+    if [ -d "$*" ]; then
+        tree -C "$*"
+        return
+    fi
+}
+
+default() {
+    fd . ~ | fzf \
+        --border \
+        --reverse \
+        --header-first \
+        --preview "hs preview {}" \
+        --header "enter: Open file/dir" \
+        --bind "enter:execute(xdg-open {} 2>/dev/null)"
+}
+
+if [ -z "$1" ]; then
+    default
+
+    exit
+fi
+
+$@
