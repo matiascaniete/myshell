@@ -29,4 +29,18 @@ listen() {
     { sudo bash -c "socat -t10 - tcp4-listen:$RASCREEN_PORT,fork > $RASCREEN_TTY" & } && disown && printf "Listening on port %s\n" "$RASCREEN_PORT"
 }
 
-if [ "$1" = "listen" ]; then listen; else send $@; fi
+info() {
+    printf "RASCREEN_HOST=%s\nRASCREEN_PORT=%s\nRASCREEN_TTY=%s\n" "$RASCREEN_HOST" "$RASCREEN_PORT" "$RASCREEN_TTY"
+}
+
+if [ "$1" = "listen" ]; then
+    listen
+    exit
+fi
+
+if [ "$1" = "info" ]; then
+    info
+    exit
+fi
+
+send $@
