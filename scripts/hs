@@ -15,13 +15,23 @@ preview() {
 }
 
 default() {
-    fd --hidden . ~ | fzf \
+    fd-visible | fzf \
         --border \
         --reverse \
         --header-first \
         --preview "hs preview {}" \
-        --header "enter: Open file/dir" \
+        --header "enter: Open file/dir; ctrl+h: show hidden; ctrl+r: reload" \
+        --bind "ctrl-h:reload(hs fd-hidden)" \
+        --bind "ctrl-r:reload(hs fd-visible)" \
         --bind "enter:execute(xdg-open {} 2>/dev/null)"
+}
+
+fd-visible() {
+    fd . ~
+}
+
+fd-hidden() {
+    fd --hidden . ~
 }
 
 if [ -z "$1" ]; then
