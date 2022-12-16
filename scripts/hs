@@ -15,7 +15,7 @@ preview() {
 }
 
 default() {
-    fd . ~ | fzf \
+    fd --hidden . ~ | fzf \
         --border \
         --reverse \
         --header-first \
