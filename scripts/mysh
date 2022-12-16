@@ -42,6 +42,14 @@ md2doc() {
     md | tee "$BASE_PATH/../docs/COMMANDS.md"
 }
 
+commands() {
+    mdless "$BASE_PATH/../docs/COMMANDS.md"
+}
+
+help () {
+    mdless "$BASE_PATH/../README.md"
+}
+
 if [ -z "$1" ]; then
     printf "No sub-command was given\n" && exit 1
 fi
