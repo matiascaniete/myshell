@@ -9,6 +9,7 @@
 - **[confirm](https://github.com/matiascaniete/myshell/blob/main/scripts/confirm)**: Ask for confirmation to the user and returns 0 if yes, 1 otherwise.
 - **[et](https://github.com/matiascaniete/myshell/blob/main/scripts/et)**: Empty the trash.
 - **[fgh](https://github.com/matiascaniete/myshell/blob/main/scripts/fgh)**: fgh - Fuzzy google-crome history
+- **[fman](https://github.com/matiascaniete/myshell/blob/main/scripts/fman)**: fuzzy man pages
 - **[gcop](https://github.com/matiascaniete/myshell/blob/main/scripts/gcop)**: Git commits on FZF
 - **[header](https://github.com/matiascaniete/myshell/blob/main/scripts/header)**: Get all headers, status or location of an url.
 - **[hs](https://github.com/matiascaniete/myshell/blob/main/scripts/hs)**: Home FZF search
