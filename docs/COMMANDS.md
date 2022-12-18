@@ -8,6 +8,7 @@
 - **[color](https://github.com/matiascaniete/myshell/blob/main/scripts/color)**: Colorize text from argument or stdin.
 - **[confirm](https://github.com/matiascaniete/myshell/blob/main/scripts/confirm)**: Ask for confirmation to the user and returns 0 if yes, 1 otherwise.
 - **[et](https://github.com/matiascaniete/myshell/blob/main/scripts/et)**: Empty the trash.
+- **[fgh](https://github.com/matiascaniete/myshell/blob/main/scripts/fgh)**: fgh - Fuzzy google-crome history
 - **[gcop](https://github.com/matiascaniete/myshell/blob/main/scripts/gcop)**: Git commits on FZF
 - **[header](https://github.com/matiascaniete/myshell/blob/main/scripts/header)**: Get all headers, status or location of an url.
 - **[hs](https://github.com/matiascaniete/myshell/blob/main/scripts/hs)**: Home FZF search
@@ -18,6 +19,7 @@
 - **[rascreen](https://github.com/matiascaniete/myshell/blob/main/scripts/rascreen)**: Send to Raspberry LCD screen thru tcp socket. Either a string or command as first argument or message from stdin.
 - **[rgf](https://github.com/matiascaniete/myshell/blob/main/scripts/rgf)**: ripgrep thru fzf.
 - **[rnm](https://github.com/matiascaniete/myshell/blob/main/scripts/rnm)**: Restart network manager (systemctl).
+- **[rofiz](https://github.com/matiascaniete/myshell/blob/main/scripts/rofiz)**: No description found.
 - **[slack](https://github.com/matiascaniete/myshell/blob/main/scripts/slack)**: Sends message to slack channel from first positional argument or stdin.
 - **[split-footages](https://github.com/matiascaniete/myshell/blob/main/scripts/split-footages)**: Separate multi-camera footages by date.
 - **[sslcc](https://github.com/matiascaniete/myshell/blob/main/scripts/sslcc)**: Checks SSL certificates for domains
