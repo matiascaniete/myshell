@@ -25,5 +25,6 @@
 - **[slack](https://github.com/matiascaniete/myshell/blob/main/scripts/slack)**: Sends message to slack channel from first positional argument or stdin.
 - **[split-footages](https://github.com/matiascaniete/myshell/blob/main/scripts/split-footages)**: Separate multi-camera footages by date.
 - **[sslcc](https://github.com/matiascaniete/myshell/blob/main/scripts/sslcc)**: Checks SSL certificates for domains
+- **[version](https://github.com/matiascaniete/myshell/blob/main/scripts/version)**: returns success if version number as first argument is greater or equals to second argument.
 - **[waitill](https://github.com/matiascaniete/myshell/blob/main/scripts/waitill)**: Ask for confirmation to end the program by pressing some defined key (q by default).
 - **[zsh-show-keybindings](https://github.com/matiascaniete/myshell/blob/main/scripts/zsh-show-keybindings)**: Show zsh keybindings.
