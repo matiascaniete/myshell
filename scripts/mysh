@@ -43,11 +43,11 @@ md2doc() {
 }
 
 commands() {
-    mdless "$BASE_PATH/../docs/COMMANDS.md"
+    mdless "$BASE_PATH/../docs/COMMANDS.md" --no-pager | bat --decorations=never
 }
 
 help () {
-    mdless "$BASE_PATH/../README.md"
+    mdless "$BASE_PATH/../README.md" --no-pager | bat --decorations=never
 }
 
 if [ -z "$1" ]; then
