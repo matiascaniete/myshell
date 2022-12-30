@@ -8,7 +8,7 @@ if [ $SHLVL = "1" ]; then
     lpscolor="--color=never"
 else
     selector="fzf"
-    display="printf"
+    display="printf '%s\n'"
     lpscolor="--color=always"
 fi
 
