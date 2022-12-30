@@ -1,0 +1,16 @@
+#! /usr/bin/env bash
+
+resolution=1366x768
+framerate=60
+# ffmpeg -f x11grab -s $resolution -r $framerate -i :0.0 -qscale 0 -vcodec huffyuv out.avi
+
+ffmpeg -f x11grab -video_size "$resolution" -framerate $framerate -i :0.0 \
+       -vcodec libx264 -preset ultrafast -qp 0 -pix_fmt yuv444p \
+       video.mkv
+
+# Key points:
+#
+# -qp 0: x264 lossless mode
+# -preset ultrafast: smallest cpu usage, large size
+# -pix_fmt yuv444p: the default, but ffmpeg suggests yuv420p, which is lossy
+
