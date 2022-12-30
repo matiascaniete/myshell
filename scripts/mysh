@@ -50,6 +50,11 @@ help () {
     mdless "$BASE_PATH/../README.md" --no-pager | bat --decorations=never
 }
 
+create() {
+    filename="$BASE_PATH/$1"
+    touch "$filename" && chmod +x "$filename" && $EDITOR "$filename"
+}
+
 if [ -z "$1" ]; then
     printf "No sub-command was given\n" && exit 1
 fi
