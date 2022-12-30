@@ -1,16 +1,35 @@
 #! /usr/bin/env bash
 
-resolution=1366x768
+# shellcheck disable=2063
+resolution=$(xrandr --current | grep '*' | uniq | awk '{print $1}')
 framerate=60
-# ffmpeg -f x11grab -s $resolution -r $framerate -i :0.0 -qscale 0 -vcodec huffyuv out.avi
+filename="ScreenCapture-$(date +%Y-%m-%d)"
+xserver_display=":0.0"
 
-ffmpeg -f x11grab -video_size "$resolution" -framerate $framerate -i :0.0 \
-       -vcodec libx264 -preset ultrafast -qp 0 -pix_fmt yuv444p \
-       video.mkv
+capture-uncompressed() {
+    ffmpeg -f x11grab -s "$resolution" -r "$framerate" -i :0.0 -qscale 0 -vcodec huffyuv "$filename.avi"
+}
 
-# Key points:
+capture-screen() {
+    # Key points:
+    #
+    # -qp 0: x264 lossless mode
+    # -preset ultrafast: smallest cpu usage, large size
+    # -pix_fmt yuv444p: the default, but ffmpeg suggests yuv420p, which is lossy
+
+    ffmpeg -f x11grab \
+        -video_size "$resolution" \
+        -framerate "$framerate" \
+        -i "$xserver_display" \
+        -vcodec libx264 \
+        -preset ultrafast \
+        -qp 0 \
+        -pix_fmt yuv444p \
+        "$filename.mkv"
+
+}
+
+# /usr/lib/xscreensaver/gleidescope &
 #
-# -qp 0: x264 lossless mode
-# -preset ultrafast: smallest cpu usage, large size
-# -pix_fmt yuv444p: the default, but ffmpeg suggests yuv420p, which is lossy
+capture-screen
 
