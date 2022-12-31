@@ -11,7 +11,7 @@ check_statements_from_file() {
     while read -r line; do
         line_number=$((line_number + 1))
 
-        if [ -n "$line" ]; then
+        if [ "$line" != "" ]; then
             if echo "$line" | grep -qvE '^#'; then
                 statement=$(echo "$line" | cut -d= -f1)
                 expec_value=$(echo "$line" | cut -d= -f2- | tr -d "\n\r")
@@ -19,7 +19,7 @@ check_statements_from_file() {
 
                 color_symbol="green ."
                 if [ "$expec_value" != "$evald_value" ]; then
-                    [ -n "$DEBUG" ] && {
+                    [ "$DEBUG" != "" ] && {
                         printf "Error on [%s (%s)]\n" "$1" "$line_number"
                         printf "Command  [eval %s]\n" "$statement"
                         printf "Result   [%s]\n" "$evald_value"
@@ -32,14 +32,14 @@ check_statements_from_file() {
             else
                 color_symbol="yellow #"
             fi
-            
-            printf '%s' "$(color $color_symbol)" | info
+
+            printf '%s' "$(color "$color_symbol")" | info
         fi
     done <"$1"
 
-    color_message=$([ $error = 1 ] && echo "red FAILED" || echo "green PASSED")
-    printf "\n%s\n" "$(color $color_message)" | info
-    return $error
+    color_message=$([ "$error" = 1 ] && echo "red FAILED" || echo "green PASSED")
+    printf "\n%s\n" "$(color "$color_message")" | info
+    return "$error"
 }
 
 info() {
@@ -61,7 +61,7 @@ check_statements_from_dir() {
         fi
     done
 
-    return $GLOBAL_ERROR
+    return "$GLOBAL_ERROR"
 }
 
 [ -f "$1" ] && {

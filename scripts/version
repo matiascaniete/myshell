@@ -3,10 +3,10 @@
 # Description: returns success if version number as first argument is greater or equals to second argument.
 
 version_greater_equal() {
-	printf '%s\n%s\n' "$2" "$1" | sort --check=quiet --version-sort
+        printf '%s\n%s\n' "$2" "$1" | sort --check=quiet --version-sort
 }
 
 version_greater_equal "$1" "$2" || {
-	echo "need $2 or above"
-	exit 1
+        echo "need $2 or above"
+        exit 1
 }
