@@ -46,7 +46,7 @@ commands() {
     mdless "$BASE_PATH/../docs/COMMANDS.md" --no-pager | bat --decorations=never
 }
 
-help () {
+help() {
     mdless "$BASE_PATH/../README.md" --no-pager | bat --decorations=never
 }
 
