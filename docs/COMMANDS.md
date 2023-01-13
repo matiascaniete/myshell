@@ -1,6 +1,7 @@
 # List of commands
 
 - **[btc](https://github.com/matiascaniete/myshell/blob/main/scripts/btc)**: Returns bitcoin (or any crypto) value from Nomics API.
+- **[capture](https://github.com/matiascaniete/myshell/blob/main/scripts/capture)**: No description found.
 - **[check-truths](https://github.com/matiascaniete/myshell/blob/main/scripts/check-truths)**: Verifies a set of assertions with the form statement command=expected value, one per line of a file or directory. Ignores files starting with _, and line started with #
 - **[cht](https://github.com/matiascaniete/myshell/blob/main/scripts/cht)**: Show cheat sheet of a command from cheat.sh.
 - **[clima](https://github.com/matiascaniete/myshell/blob/main/scripts/clima)**: Get forecast for Barcelona.
@@ -27,4 +28,3 @@
 - **[sslcc](https://github.com/matiascaniete/myshell/blob/main/scripts/sslcc)**: Checks SSL certificates for domains
 - **[version](https://github.com/matiascaniete/myshell/blob/main/scripts/version)**: returns success if version number as first argument is greater or equals to second argument.
 - **[waitill](https://github.com/matiascaniete/myshell/blob/main/scripts/waitill)**: Ask for confirmation to end the program by pressing some defined key (q by default).
-- **[zsh-show-keybindings](https://github.com/matiascaniete/myshell/blob/main/scripts/zsh-show-keybindings)**: Show zsh keybindings.
