@@ -78,4 +78,4 @@ check_statements_from_dir() {
     exit
 }
 
-color red "A file or directory containing truth statements files must be given as a first argument" && exit 1
+color red "A file or directory containing truth statements files must be given as a first argument" && exit 22
