@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+# description: Launches rofi for selecting apps
+
+rofi -sorting-method fzf \
+    -show combi drun run ssh keys \
+    -modi combi,drun,run,ssh,keys
