@@ -22,6 +22,7 @@
 - **[rascreen](https://github.com/matiascaniete/myshell/blob/main/scripts/rascreen)**: Send to Raspberry LCD screen thru tcp socket. Either a string or command as first argument or message from stdin.
 - **[rgf](https://github.com/matiascaniete/myshell/blob/main/scripts/rgf)**: ripgrep thru fzf.
 - **[rmenu-apps](https://github.com/matiascaniete/myshell/blob/main/scripts/rmenu-apps)**: Launches rofi for selecting apps
+- **[rmenu-exit](https://github.com/matiascaniete/myshell/blob/main/scripts/rmenu-exit)**: Launches rofi with exit options
 - **[rnm](https://github.com/matiascaniete/myshell/blob/main/scripts/rnm)**: Restart network manager (systemctl).
 - **[rofiz](https://github.com/matiascaniete/myshell/blob/main/scripts/rofiz)**: No description found.
 - **[slack](https://github.com/matiascaniete/myshell/blob/main/scripts/slack)**: Sends message to slack channel from first positional argument or stdin.
