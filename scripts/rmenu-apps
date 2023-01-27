@@ -3,6 +3,7 @@
 # description: Launches rofi for selecting apps
 
 rofi -sorting-method fzf \
+    -normal-window \
     -icon-theme Paper  \
     -show drun run ssh combi keys \
     -modi combi,drun,run,ssh,keys
