@@ -2,7 +2,7 @@
 
 # description: Launches rofi with exit options
 
-echo "systemctl suspend|systemctl reboot|systemctl poweroff" \
-    | rofi -dmenu -sep "|" -i -u 2 -a 1 -width -25 -window-title "Exit Options" -lines 3 \
-    | head -n 1 \
-    | xargs -i"XXX" --no-run-if-empty bash -c "XXX"
+echo "systemctl suspend|systemctl hibernate|systemctl hybrid-sleep|systemctl reboot|systemctl poweroff" |
+rofi -dmenu -sep "|" -i -normal-window -width -25 -no-show-icons -p "" -window-title "Exit Options" -lines 5 |
+head -n 1 |
+xargs -i"XXX" --no-run-if-empty bash -c "XXX"
