@@ -1,5 +1,6 @@
 # List of commands
 
+- **[backup](https://github.com/matiascaniete/myshell/blob/main/scripts/backup)**: Executes backups file
 - **[btc](https://github.com/matiascaniete/myshell/blob/main/scripts/btc)**: Returns bitcoin (or any crypto) value from Nomics API.
 - **[capture](https://github.com/matiascaniete/myshell/blob/main/scripts/capture)**: No description found.
 - **[check-truths](https://github.com/matiascaniete/myshell/blob/main/scripts/check-truths)**: Verifies a set of assertions with the form statement command=expected value, one per line of a file or directory. Ignores files starting with _, and line started with #

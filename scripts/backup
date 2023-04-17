@@ -1,0 +1,43 @@
+#!/bin/env bash
+
+# Description: Executes backups file
+
+BACKUPS_FILE=~/.config/backup/backups.txt
+
+make-backup() {
+    if [ -z "$1" ]; then
+        echo "A source directory must be given as first argument"
+        return 1
+    fi
+
+    if [ ! -d "$1" ]; then
+        echo "The given source directory [$1] doesn't exists"
+        return 1
+    fi
+
+    if [ -z "$2" ]; then
+        echo "A destination directory must be given as second argument"
+        return 1
+    fi
+
+    rsync -avhP "$1" "$2"
+}
+
+execute-backups() {
+    if [ ! -f $BACKUPS_FILE ]; then
+        echo "The file [$BACKUPS_FILE] doesn't exists. Please create one with a pair source:destination paths, one line for each backup"
+        return 1
+    fi
+    # Exceptionally, if the loop body may read from standard input, you can open the file using a different file descriptor. Here, 10 is just an arbitrary number (different from 0, 1, 2)
+    while IFS="" read -r -u 10 line; do
+        from="$(echo "$line" | cut -d ':' -f1)"
+        to="$(echo "$line" | cut -d ':' -f2)"
+        echo "making backup..."
+        echo "from [$from]"
+        echo "to [$to]"
+        make-backup "$from" "$to"
+        echo
+    done 10<"$BACKUPS_FILE"
+}
+
+execute-backups
