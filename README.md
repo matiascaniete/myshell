@@ -3,7 +3,7 @@
 ## Installation
 
 ```sh
-git clone https://github.com/matiascaniete/myshell.git
+cd ~ && git clone git@github.com:matiascaniete/myshell.git
 ```
 
 ## Configuration and autocompletion zsh
