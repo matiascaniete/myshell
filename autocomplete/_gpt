@@ -13,6 +13,8 @@ _gpt() {
         '--full-response[Show full response]'
         '-m+[Specify model]: :_gpt-model'
         '--model=[Specify model]: :_gpt-model'
+        '--temperature=[Specify temperature]: :_float'
+        '-t+[Specify temperature]: :_float'
     )
     _arguments -s "$arguments[@]"
 }
@@ -23,6 +25,10 @@ _gpt-role() {
 
 _gpt-model() {
     _values 'models' $(gpt --list-models)
+}
+
+_float() {
+    _values '' 0.0 0.1 0.2 0.3 0.4 0.5 1.0
 }
 
 compdef _gpt gpt
