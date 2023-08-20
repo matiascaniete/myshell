@@ -14,6 +14,7 @@
 - **[fhelp](https://github.com/matiascaniete/myshell/blob/main/scripts/fhelp)**: Fuzzy help, man pages, cht.sh, tldr
 - **[fman](https://github.com/matiascaniete/myshell/blob/main/scripts/fman)**: fuzzy man pages
 - **[gcop](https://github.com/matiascaniete/myshell/blob/main/scripts/gcop)**: Git commits on FZF
+- **[gpt](https://github.com/matiascaniete/myshell/blob/main/scripts/gpt)**: OpenAI gpt chat
 - **[header](https://github.com/matiascaniete/myshell/blob/main/scripts/header)**: Get all headers, status or location of an url.
 - **[hs](https://github.com/matiascaniete/myshell/blob/main/scripts/hs)**: Home FZF search
 - **[lpass-select](https://github.com/matiascaniete/myshell/blob/main/scripts/lpass-select)**: Show lastpass password selected from rofi or fzf.

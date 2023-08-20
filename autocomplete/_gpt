@@ -1,0 +1,28 @@
+#compdef gpt
+
+_gpt() {
+    local arguments
+    arguments=(
+        '-h[Show help information]'
+        '--help[Show help information]'
+        '-r+[Specify role]: :_gpt-role'
+        '--role=[Specify role]: :_gpt-role'
+        '--list-roles[List available roles]'
+        '--list-models[List available models]'
+        '-f[Show full response]'
+        '--full-response[Show full response]'
+        '-m+[Specify model]: :_gpt-model'
+        '--model=[Specify model]: :_gpt-model'
+    )
+    _arguments -s "$arguments[@]"
+}
+
+_gpt-role() {
+    _values 'roles' $(gpt --list-roles)
+}
+
+_gpt-model() {
+    _values 'models' $(gpt --list-models)
+}
+
+compdef _gpt gpt
