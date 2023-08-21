@@ -38,26 +38,26 @@ Envía un mensaje al modelo GPT-3.5 Turbo.
 ### Ejemplo 2
 
 ```bash
-gpt -r system "Estoy buscando información sobre gatos"
-```
-
-Envía un mensaje con el rol "system" al modelo GPT-3.5 Turbo.
-
-### Ejemplo 3
-
-```bash
-gpt --create-role bot
+echo "Eres un gato muy guapo" | gpt --create-role gato
 ```
 
 Crea un nuevo rol llamado "bot".
 
+### Ejemplo 3
+
+```bash
+gpt -r gato "¿Cual es tu comida favorita?"
+```
+
+Envía un mensaje con el rol "gato" al modelo GPT-3.5 Turbo.
+
 ### Ejemplo 4
 
 ```bash
-gpt --show-role bot
+gpt --show-role gato
 ```
 
-Muestra el contenido del rol "bot".
+Muestra el contenido del rol "gato".
 
 ### Ejemplo 5
 
