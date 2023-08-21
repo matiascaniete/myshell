@@ -13,6 +13,8 @@ _gpt() {
         '--list-models[List available models]'
         '-f[Show full response]'
         '--full-response[Show full response]'
+        '--debug[Debug mode]'
+        '-d[Debug mode]'
         '-m+[Specify model]: :_gpt-model'
         '--model=[Specify model]: :_gpt-model'
         '--temperature=[Specify temperature]: :_float'
