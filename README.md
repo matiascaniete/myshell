@@ -19,3 +19,4 @@ fpath=(~/myshell/autocomplete $fpath)
 [COMMANDS.md](docs/COMMANDS.md)
 
 [gpt.md](docs/gpt.md)
+[confirm.md](docs/confirm.md)
