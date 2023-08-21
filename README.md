@@ -17,3 +17,5 @@ fpath=(~/myshell/autocomplete $fpath)
 ## List of commands
 
 [COMMANDS.md](docs/COMMANDS.md)
+
+[gpt.md](docs/gpt.md)
