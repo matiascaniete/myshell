@@ -18,8 +18,25 @@ dp_markdown() {
 }
 
 description() {
+    options=$(getopt -o "p:" -l "printer:" -n "$0" -- "$@")
+
+    eval set -- "$options"
+
+    printer="dp_plain"
+    while true; do
+        case "$1" in
+            -p | --printer)
+                printer="$2"
+                shift 2
+                ;;
+            --)
+                shift
+                break
+                ;;
+        esac
+    done
+
     command="$1"
-    printer=${2:-dp_plain}
     description=$(grep -iE "^#.Description:" "$BASE_PATH/$command" | grep -v "^#!" | cut -d: -f2- | xargs)
     eval "$printer '$command' '$description'"
     [ -n "$description" ]
@@ -59,7 +76,7 @@ if [ -z "$1" ]; then
     printf "No sub-command was given\n" && exit 1
 fi
 
-[[ ! $(type -t "$1" 2>/dev/null) =~ function ]] && {
+[[ ! $(type -t "$1" 2>/dev/null) =~ () ]] && {
     printf "Sub-command [%s] not found!\nMaybe you mean:\n" "$1"
     declare -F | cut -d " " -f3- | fzf --filter "$1" | xargs -n1 printf "%s %s\n" "$(basename "$0")"
     exit 1
