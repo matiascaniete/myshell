@@ -4,17 +4,26 @@
 
 BASE_PATH=$(dirname "$(realpath "$0")")
 
-update() {
-    cd "$BASE_PATH" && git pull --ff-only
-}
-
-dp_plain() {
+# printers
+_printer_dp_plain() {
     printf '%s: %s\n' "$1" "$([ -n "$2" ] && echo "$2" || echo "No description found.")"
 }
 
-dp_markdown() {
+_printer_dp_markdown() {
     command_link=$(echo "$1" | sed -n "s|$1|[$1](https://github.com/matiascaniete/myshell/blob/main/scripts/$1)|p")
     printf '**%s**: %s\n' "$command_link" "$([ -n "$2" ] && echo "$2" || echo "No description found.")"
+}
+
+# helpers
+
+raw_list() {
+    find "$BASE_PATH" -type f | sort | xargs -n1 basename | xargs -I{} mysh description {} "$1"
+}
+
+# commands
+
+update() {
+    cd "$BASE_PATH" && git pull --ff-only
 }
 
 description() {
@@ -38,12 +47,8 @@ description() {
 
     command="$1"
     description=$(grep -iE "^#.Description:" "$BASE_PATH/$command" | grep -v "^#!" | cut -d: -f2- | xargs)
-    eval "$printer '$command' '$description'"
+    eval "_printer_$printer '$command' '$description'"
     [ -n "$description" ]
-}
-
-raw_list() {
-    find "$BASE_PATH" -type f | sort | xargs -n1 basename | xargs -I{} mysh description {} "$1"
 }
 
 list() {
@@ -71,6 +76,8 @@ create() {
     filename="$BASE_PATH/$1"
     touch "$filename" && chmod +x "$filename" && $EDITOR "$filename"
 }
+
+# main
 
 if [ -z "$1" ]; then
     printf "No sub-command was given\n" && exit 1
