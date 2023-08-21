@@ -89,10 +89,16 @@ while true; do
     esac
 done
 
+if [ ! -t 0 ]; then
+    prompt=$(cat)
+else
+    prompt=$*
+fi
+
 if [ "$FULL_RESPONSE" -eq 1 ]; then
     # shellcheck disable=2068
-    gpt $@ | jq .
+    gpt "$prompt" | jq .
 else
     # shellcheck disable=2068
-    gpt $@ | parse-message
+    gpt "$prompt" | parse-message
 fi
