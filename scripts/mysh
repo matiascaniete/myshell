@@ -17,8 +17,12 @@ _printer_dp_markdown() {
 
 # helpers
 
+list_names() {
+    find "$BASE_PATH" -type f | sort | xargs -n1 basename
+}
+
 raw_list() {
-    find "$BASE_PATH" -type f | sort | xargs -n1 basename | xargs -I{} mysh description {} "$1"
+    list_names | xargs -I{} mysh description {} "$1"
 }
 
 # subcommands
@@ -87,7 +91,9 @@ gpt-create-zsh-completion() {
     autocomplete_file="$BASE_PATH/../autocomplete/_$command"
     tmp_file=$(mktemp)
     cat <"$script_file" \
-        | gpt --role=zsh-compdef-generator > "$tmp_file" \
+        | gpt \
+        --role=zsh-compdef-generator \
+        --temperature=0 > "$tmp_file" \
         && mv "$tmp_file" "$autocomplete_file"
 }
 # main

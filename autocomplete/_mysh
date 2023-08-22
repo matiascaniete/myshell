@@ -1,25 +1,67 @@
 #compdef mysh
 
-local -a subcommands
+local subcommands
 subcommands=(
-  'update:Update the mysh script repository'
-  'description:Show the description of a command'
-  'list:List all available commands'
-  'md:Print the list of commands in markdown format'
-  'md2doc:Export the list of commands to a markdown file'
-  'commands:View the list of commands'
-  'help:View the script documentation'
-  'create:Create a new command file'
+  'update:Update the mysh manager.'
+  'description:Print the description of a command.'
+  'list:List all available commands.'
+  'md:Print the list of commands in Markdown format.'
+  'md2doc:Generate the COMMANDS.md file.'
+  'commands:Display the list of commands in a pager.'
+  'help:Display the README.md file in a pager.'
+  'create:Create a new command file.'
+  'gpt-create-zsh-completion:Generate zsh completion for a command.'
 )
 
+_printers() {
+  _values 'printers' dp_markdown dp_plain
+}
+
+_commands() {
+  _values 'commands' $(mysh list_names)
+}
+
 _arguments -s \
-  '1: :->subcommands' \
+  '1: :->subcommand' \
   '*:: :->args'
 
 case $state in
-  subcommands)
+  subcommand)
     _describe 'subcommand' subcommands
     ;;
   args)
+    case $words[1] in
+      update)
+        # No options or arguments for this subcommand
+        ;;
+      description)
+        _arguments \
+          '-p[printer]: :_printers' \
+          '*:command:_commands'
+        ;;
+      list)
+        # No options or arguments for this subcommand
+        ;;
+      md)
+        # No options or arguments for this subcommand
+        ;;
+      md2doc)
+        # No options or arguments for this subcommand
+        ;;
+      commands)
+        # No options or arguments for this subcommand
+        ;;
+      help)
+        # No options or arguments for this subcommand
+        ;;
+      create)
+        _arguments \
+          '1:filename:_files'
+        ;;
+      gpt-create-zsh-completion)
+        _arguments \
+          '1:command:_files'
+        ;;
+    esac
     ;;
 esac
