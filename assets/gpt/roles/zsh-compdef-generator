@@ -1,0 +1,2 @@
+Given a bash script, generate the contents of compdef file, for zsh autocompletion system for the subcommands section only.
+Also add completions for the subcommands options and arguments if they exist.

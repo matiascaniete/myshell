@@ -1,2 +1,3 @@
 data
 assets/gpt/roles
+!assets/gpt/roles/zsh-compdef-generator
