@@ -1,0 +1,47 @@
+#compdef color
+
+local -a _color_commands
+_color_commands=(
+    "red:Red color"
+    "green:Green color"
+    "yellow:Yellow color"
+    "blue:Blue color"
+    "magenta:Magenta color"
+    "cyan:Cyan color"
+    "gray:Gray color"
+)
+
+_arguments -s \
+    '1: :->command' \
+    '*:: :->args'
+
+case $state in
+    command)
+        _describe -t commands 'color commands' _color_commands
+        ;;
+    args)
+        case $words[1] in
+            red)
+                _files
+                ;;
+            green)
+                _files
+                ;;
+            yellow)
+                _files
+                ;;
+            blue)
+                _files
+                ;;
+            magenta)
+                _files
+                ;;
+            cyan)
+                _files
+                ;;
+            gray)
+                _files
+                ;;
+        esac
+        ;;
+esac
