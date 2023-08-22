@@ -81,6 +81,15 @@ create() {
     touch "$filename" && chmod +x "$filename" && $EDITOR "$filename"
 }
 
+gpt-create-zsh-completion() {
+    command="$1"
+    script_file="$BASE_PATH/../scripts/$command"
+    autocomplete_file="$BASE_PATH/../autocomplete/_$command"
+    tmp_file=$(mktemp)
+    cat <"$script_file" \
+        | gpt --role=zsh-compdef-generator > "$tmp_file" \
+        && mv "$tmp_file" "$autocomplete_file"
+}
 # main
 
 if [ -z "$1" ]; then
