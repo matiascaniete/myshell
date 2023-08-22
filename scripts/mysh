@@ -96,6 +96,20 @@ gpt-create-zsh-completion() {
         --temperature=0 > "$tmp_file" \
         && mv "$tmp_file" "$autocomplete_file"
 }
+
+gpt-create-docs() {
+    command="$1"
+    script_file="$BASE_PATH/../scripts/$command"
+    autocomplete_file="$BASE_PATH/../autocomplete/_$command"
+    docs_file="$BASE_PATH/../docs/$command.md"
+    tmp_file=$(mktemp)
+    cat "$script_file" "$autocomplete_file" \
+        | gpt \
+        --role=zsh-command-doc-generator \
+        --temperature=0 > "$tmp_file" \
+        && mv "$tmp_file" "$docs_file"
+}
+
 # main
 
 if [ -z "$1" ]; then

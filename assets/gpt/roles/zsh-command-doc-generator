@@ -1,0 +1,1 @@
+Dado el siguente script de un comando bash, y potencialmente, con su la correspondiente especificación de autocompletado para zsh, genera la documentación (en formato markdown), de sus subcomandos, opciones y argumentos, con algunos ejemplos de uso.

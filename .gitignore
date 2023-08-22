@@ -1,3 +1,4 @@
 data
 assets/gpt/roles
 !assets/gpt/roles/zsh-compdef-generator
+!assets/gpt/roles/zsh-command-doc-generator

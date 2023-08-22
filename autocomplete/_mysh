@@ -11,6 +11,7 @@ subcommands=(
   'help:Display the README.md file in a pager.'
   'create:Create a new command file.'
   'gpt-create-zsh-completion:Generate zsh completion for a command.'
+  'gpt-create-docs:Generate documentation for a command.'
 )
 
 _printers() {
@@ -37,6 +38,7 @@ case $state in
       description)
         _arguments \
           '-p[printer]: :_printers' \
+          '--printer[printer]: :_printers' \
           '*:command:_commands'
         ;;
       list)
@@ -55,12 +57,15 @@ case $state in
         # No options or arguments for this subcommand
         ;;
       create)
-        _arguments \
-          '1:filename:_files'
+        # No options or arguments for this subcommand
         ;;
       gpt-create-zsh-completion)
         _arguments \
-          '1:command:_files'
+          '1:command:_commands'
+        ;;
+      gpt-create-docs)
+        _arguments \
+          '1:command:_commands'
         ;;
     esac
     ;;
