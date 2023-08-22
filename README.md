@@ -32,3 +32,4 @@ You can find the complete list of commands in the following documentation files:
 - [confirm.md](docs/confirm.md)
 - [gpt.md](docs/gpt.md)
 - [mysh.md](docs/mysh.md)
+- [rascreen.md](docs/rascreen.md)
