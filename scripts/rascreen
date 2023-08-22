@@ -1,10 +1,20 @@
 #!/usr/bin/env bash
 
+# Name: rascreen
+# Usage: rascreen [listen|info|send]
 # Description: Send to Raspberry LCD screen thru tcp socket. Either a string or command as first argument or message from stdin.
 
 RASCREEN_HOST=${RASCREEN_HOST:-raspberrypi.local}
 RASCREEN_PORT=${RASCREEN_PORT:-8000}
 RASCREEN_TTY=${RASCREEN_TTY:-/dev/tty1}
+
+# helpers
+
+to_socat() {
+    socat -t10 - tcp:"$RASCREEN_HOST":"$RASCREEN_PORT"
+}
+
+# subcommands
 
 send() {
     args=$@
@@ -21,10 +31,6 @@ send() {
     fi
 }
 
-to_socat() {
-    socat -t10 - tcp:"$RASCREEN_HOST":"$RASCREEN_PORT"
-}
-
 listen() {
     { sudo bash -c "socat -t10 - tcp4-listen:$RASCREEN_PORT,fork > $RASCREEN_TTY" & } && disown && printf "Listening on port %s\n" "$RASCREEN_PORT"
 }
@@ -32,6 +38,8 @@ listen() {
 info() {
     printf "RASCREEN_HOST=%s\nRASCREEN_PORT=%s\nRASCREEN_TTY=%s\n" "$RASCREEN_HOST" "$RASCREEN_PORT" "$RASCREEN_TTY"
 }
+
+# main
 
 if [ "$1" = "listen" ]; then
     listen

@@ -1,1 +1,8 @@
-Dado el siguente script de un comando bash, y potencialmente, con su la correspondiente especificación de autocompletado para zsh, genera la documentación (en formato markdown), de sus subcomandos, opciones y argumentos, con algunos ejemplos de uso.
+Dado el siguente script de un comando bash, y potencialmente, con su la correspondiente especificación de autocompletado para zsh:
+
+Genera la su documentación en formato markdown.
+Explicando sus subcomandos, opciones y argumentos. 
+Explicando, si existen, las variables de entorno.
+Genera también una sección con algunos ejemplos de uso.
+
+Todo en un solo documento.

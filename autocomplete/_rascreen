@@ -1,0 +1,9 @@
+#compdef rascreen
+
+local arguments
+
+arguments=(
+  '1: :((listen info send))'
+)
+
+_arguments -s $arguments
