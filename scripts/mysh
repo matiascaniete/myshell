@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-# Description: myshell manager.
+# Description: mysh manager.
 
 BASE_PATH=$(dirname "$(realpath "$0")")
 
 # printers
+
 _printer_dp_plain() {
     printf '%s: %s\n' "$1" "$([ -n "$2" ] && echo "$2" || echo "No description found.")"
 }
@@ -20,7 +21,7 @@ raw_list() {
     find "$BASE_PATH" -type f | sort | xargs -n1 basename | xargs -I{} mysh description {} "$1"
 }
 
-# commands
+# subcommands
 
 update() {
     cd "$BASE_PATH" && git pull --ff-only
@@ -36,6 +37,9 @@ description() {
         case "$1" in
             -p | --printer)
                 printer="$2"
+                if [ "$printer" != "dp_plain" ] && [ "$printer" != "dp_markdown" ]; then
+                    printf "Invalid printer [%s]\n" "$printer" && exit 1
+                fi
                 shift 2
                 ;;
             --)

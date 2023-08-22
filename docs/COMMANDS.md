@@ -1,34 +1,34 @@
 # List of commands
 
-- **[backup](https://github.com/matiascaniete/myshell/blob/main/scripts/backup)**: Executes backups file
-- **[btc](https://github.com/matiascaniete/myshell/blob/main/scripts/btc)**: Returns bitcoin (or any crypto) value from Nomics API.
-- **[capture](https://github.com/matiascaniete/myshell/blob/main/scripts/capture)**: No description found.
-- **[check-truths](https://github.com/matiascaniete/myshell/blob/main/scripts/check-truths)**: Verifies a set of assertions with the form statement command=expected value, one per line of a file or directory. Ignores files starting with _, and line started with #
-- **[cht](https://github.com/matiascaniete/myshell/blob/main/scripts/cht)**: Show cheat sheet of a command from cheat.sh.
-- **[clima](https://github.com/matiascaniete/myshell/blob/main/scripts/clima)**: Get forecast for Barcelona.
-- **[clp](https://github.com/matiascaniete/myshell/blob/main/scripts/clp)**: Selects command from history and copy it to clipboard.
-- **[color](https://github.com/matiascaniete/myshell/blob/main/scripts/color)**: Colorize text from argument or stdin.
-- **[confirm](https://github.com/matiascaniete/myshell/blob/main/scripts/confirm)**: Ask for confirmation to the user and returns 0 if yes, 1 otherwise.
-- **[et](https://github.com/matiascaniete/myshell/blob/main/scripts/et)**: Empty the trash.
-- **[fgh](https://github.com/matiascaniete/myshell/blob/main/scripts/fgh)**: fgh - Fuzzy google-crome history
-- **[fhelp](https://github.com/matiascaniete/myshell/blob/main/scripts/fhelp)**: Fuzzy help, man pages, cht.sh, tldr
-- **[fman](https://github.com/matiascaniete/myshell/blob/main/scripts/fman)**: fuzzy man pages
-- **[gcop](https://github.com/matiascaniete/myshell/blob/main/scripts/gcop)**: Git commits on FZF
-- **[gpt](https://github.com/matiascaniete/myshell/blob/main/scripts/gpt)**: OpenAI gpt chat
-- **[header](https://github.com/matiascaniete/myshell/blob/main/scripts/header)**: Get all headers, status or location of an url.
-- **[hs](https://github.com/matiascaniete/myshell/blob/main/scripts/hs)**: Home FZF search
-- **[lpass-select](https://github.com/matiascaniete/myshell/blob/main/scripts/lpass-select)**: Show lastpass password selected from rofi or fzf.
-- **[mip](https://github.com/matiascaniete/myshell/blob/main/scripts/mip)**: Get my public IP.
-- **[mktouch](https://github.com/matiascaniete/myshell/blob/main/scripts/mktouch)**: mkdir -p and touch combined.
-- **[mysh](https://github.com/matiascaniete/myshell/blob/main/scripts/mysh)**: myshell manager.
-- **[rascreen](https://github.com/matiascaniete/myshell/blob/main/scripts/rascreen)**: Send to Raspberry LCD screen thru tcp socket. Either a string or command as first argument or message from stdin.
-- **[rgf](https://github.com/matiascaniete/myshell/blob/main/scripts/rgf)**: ripgrep thru fzf.
-- **[rmenu-apps](https://github.com/matiascaniete/myshell/blob/main/scripts/rmenu-apps)**: Launches rofi for selecting apps
-- **[rmenu-exit](https://github.com/matiascaniete/myshell/blob/main/scripts/rmenu-exit)**: Launches rofi with exit options
-- **[rnm](https://github.com/matiascaniete/myshell/blob/main/scripts/rnm)**: Restart network manager (systemctl).
-- **[rofiz](https://github.com/matiascaniete/myshell/blob/main/scripts/rofiz)**: No description found.
-- **[slack](https://github.com/matiascaniete/myshell/blob/main/scripts/slack)**: Sends message to slack channel from first positional argument or stdin.
-- **[split-footages](https://github.com/matiascaniete/myshell/blob/main/scripts/split-footages)**: Separate multi-camera footages by date.
-- **[sslcc](https://github.com/matiascaniete/myshell/blob/main/scripts/sslcc)**: Checks SSL certificates for domains
-- **[version](https://github.com/matiascaniete/myshell/blob/main/scripts/version)**: returns success if version number as first argument is greater or equals to second argument.
-- **[waitill](https://github.com/matiascaniete/myshell/blob/main/scripts/waitill)**: Ask for confirmation to end the program by pressing some defined key (q by default).
+- backup: Executes backups file
+- btc: Returns bitcoin (or any crypto) value from Nomics API.
+- capture: No description found.
+- check-truths: Verifies a set of assertions with the form statement command=expected value, one per line of a file or directory. Ignores files starting with _, and line started with #
+- cht: Show cheat sheet of a command from cheat.sh.
+- clima: Get forecast for Barcelona.
+- clp: Selects command from history and copy it to clipboard.
+- color: Colorize text from argument or stdin.
+- confirm: Ask for confirmation to the user and returns 0 if yes, 1 otherwise.
+- et: Empty the trash.
+- fgh: fgh - Fuzzy google-crome history
+- fhelp: Fuzzy help, man pages, cht.sh, tldr
+- fman: fuzzy man pages
+- gcop: Git commits on FZF
+- gpt: OpenAI gpt chat
+- header: Get all headers, status or location of an url.
+- hs: Home FZF search
+- lpass-select: Show lastpass password selected from rofi or fzf.
+- mip: Get my public IP.
+- mktouch: mkdir -p and touch combined.
+- mysh: mysh manager.
+- rascreen: Send to Raspberry LCD screen thru tcp socket. Either a string or command as first argument or message from stdin.
+- rgf: ripgrep thru fzf.
+- rmenu-apps: Launches rofi for selecting apps
+- rmenu-exit: Launches rofi with exit options
+- rnm: Restart network manager (systemctl).
+- rofiz: No description found.
+- slack: Sends message to slack channel from first positional argument or stdin.
+- split-footages: Separate multi-camera footages by date.
+- sslcc: Checks SSL certificates for domains
+- version: returns success if version number as first argument is greater or equals to second argument.
+- waitill: Ask for confirmation to end the program by pressing some defined key (q by default).

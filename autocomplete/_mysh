@@ -1,29 +1,25 @@
 #compdef mysh
 
-__mysh_commands=(
-    "update:Update myshell manager"
-    "dp_plain:Prints command description in plain format"
-    "dp_markdown:Prints command description in markdown format"
-    "description:Prints the description of a command"
-    "raw_list:Lists all commands with plain descriptions"
-    "list:Lists all commands with formatted descriptions"
-    "md:Generates a markdown file with the list of commands"
-    "md2doc:Generates the COMMANDS.md file in the docs folder"
-    "commands:Lists all commands in a pager"
-    "help:Displays the README.md file in a pager"
-    "create:Creates a new command file"
+local -a subcommands
+subcommands=(
+  'update:Update the mysh script repository'
+  'description:Show the description of a command'
+  'list:List all available commands'
+  'md:Print the list of commands in markdown format'
+  'md2doc:Export the list of commands to a markdown file'
+  'commands:View the list of commands'
+  'help:View the script documentation'
+  'create:Create a new command file'
 )
 
-_mysh() {
-    local curcontext=$curcontext state line
-    _arguments \
-        '*::command:->command'
+_arguments -s \
+  '1: :->subcommands' \
+  '*:: :->args'
 
-    case $state in
-        command)
-            _describe -t commands 'command' __mysh_commands
-        ;;
-    esac
-}
-
-compdef _mysh mysh
+case $state in
+  subcommands)
+    _describe 'subcommand' subcommands
+    ;;
+  args)
+    ;;
+esac
