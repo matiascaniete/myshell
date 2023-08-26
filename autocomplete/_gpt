@@ -13,6 +13,7 @@ _gpt() {
         '--list-models[List available models]'
         '-f[Show full response]'
         '--full-response[Show full response]'
+        '--file=[Specify file]: :_files'
         '--debug[Debug mode]'
         '-d[Debug mode]'
         '-m+[Specify model]: :_gpt-model'

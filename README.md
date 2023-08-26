@@ -2,21 +2,21 @@
 
 ## Installation
 
-To install MyShell, you can follow these steps:
+To install MyShell, follow these steps:
 
 1. Open your terminal.
-2. Change to your home directory by running the following command:
+2. Change to your home directory by running the command:
    ```
    cd ~
    ```
-3. Clone the MyShell repository by running the following command:
+3. Clone the MyShell repository by running the command:
    ```
    git clone git@github.com:matiascaniete/myshell.git
    ```
 
 ## Configuration and Autocompletion in zsh
 
-To enable autocompletion for the MyShell scripts in zsh, you need to add the following line to your `~/.zshrc` file:
+To enable autocompletion for the MyShell scripts in zsh, add the following line to your `~/.zshrc` file:
 
 ```sh
 fpath=(~/myshell/autocomplete $fpath)
@@ -27,7 +27,6 @@ fpath=(~/myshell/autocomplete $fpath)
 You can find the complete list of commands in the following documentation files:
 
 - [COMMANDS.md](docs/COMMANDS.md)
-
 - [color.md](docs/color.md)
 - [confirm.md](docs/confirm.md)
 - [gpt.md](docs/gpt.md)

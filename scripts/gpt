@@ -151,5 +151,13 @@ if [ "$FULL_RESPONSE" -eq 1 ]; then
     exit
 fi
 
+
+if [ -f "$FILE" ]; then
+    tmpfile=$(mktemp)
+    prompt=$(cat "$FILE")
+    (gpt "$prompt"|parse-message >"$tmpfile") && mv "$tmpfile" "$FILE"
+    exit
+fi
+
 # shellcheck disable=2068
 gpt "$prompt" | parse-message
