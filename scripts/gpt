@@ -59,12 +59,23 @@ gpt() {
 }
 
 parse-message() {
-    jq -r '.choices[].message.content'
+    # jq -r '.choices[].message.content'
+    # jq -r "if .error then .error.message else .choices[].message.content end"
+
+    response=$(cat)
+    error=$(echo "$response" | jq -r '.error.message')
+    if [[ $error != "null" ]]; then
+        echo "$error" >&2
+        exit 1
+    else
+        data=$(echo "$response" | jq -r '.choices[].message.content')
+        echo "$data"
+    fi
 }
 
 # Options and arguments parsing
 
-options=$(getopt -o dhft:m:r: --long debug,help,full-response,temperature:,model:,role:,list-roles,list-models,create-role:,show-role: -- "$@")
+options=$(getopt -o dhft:m:r: --long debug,help,full-response,temperature:,model:,role:,list-roles,list-models,create-role:,show-role:,file: -- "$@")
 eval set -- "$options"
 
 while true; do
@@ -112,6 +123,10 @@ while true; do
             echo "gpt-3.5-turbo"
             exit 0
             ;;
+        --file)
+            FILE="$2"
+            shift 2
+            ;;
         --)
             shift
             break
@@ -133,7 +148,8 @@ fi
 if [ "$FULL_RESPONSE" -eq 1 ]; then
     # shellcheck disable=2068
     gpt "$prompt" | jq .
-else
-    # shellcheck disable=2068
-    gpt "$prompt" | parse-message
+    exit
 fi
+
+# shellcheck disable=2068
+gpt "$prompt" | parse-message
