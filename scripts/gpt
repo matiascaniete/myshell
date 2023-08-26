@@ -146,8 +146,8 @@ if [ -n "$*" ]; then
 fi
 
 if [ "$DEBUG" = 1 ]; then
-    # gpt "$prompt"
     echo "PROMPT: $prompt"
+    gpt "$prompt"
     exit
 fi
 
