@@ -1,10 +1,10 @@
-# OpenAI GPT Chat
+## OpenAI GPT Chat
 
-This script uses the OpenAI API to chat with the GPT-3.5 Turbo model.
+This script allows you to interact with the GPT-3.5 Turbo model using the OpenAI API for chat conversations.
 
-## Usage
+### Usage
 
-```bash
+```shell
 gpt [options] <message>
 
 or
@@ -12,81 +12,72 @@ or
 echo <message> | gpt [options]
 ```
 
-## Options
+### Options
 
-- `-h`, `--help`: Show help information.
+- `-h`, `--help`: Show the help information.
 - `-r <role>`, `--role <role>`: Specify the role of the message.
-- `--list-roles`: List the available roles.
+- `--list-roles`: List all available roles.
 - `--create-role <role>`: Create a new role with the specified name.
-- `--show-role <role>`: Show the content of a role.
-- `--list-models`: List the available models.
+- `--show-role <role>`: View the content of a role.
+- `--list-models`: List all available models.
 - `-f`, `--full-response`: Show the full response from the API.
-- `-d`, `--debug`: Debug mode.
+- `-d`, `--debug`: Enable debug mode. Instead of making the actual API call, it shows the corresponding curl command.
 - `-m <model>`, `--model <model>`: Specify the model to use.
 - `-t <temperature>`, `--temperature <temperature>`: Specify the temperature.
+- `--file <file_path>`: Specify a file to be modified.
 
-## Examples
+### Examples
 
-### Example 1
+1. Send a message to the GPT-3.5 Turbo model:
 
-```bash
+```shell
 gpt "Hello! How are you?"
 ```
 
-Send a message to the GPT-3.5 Turbo model.
+2. Create a new role named "cat" and send a message:
 
-### Example 2
-
-```bash
+```shell
 echo "You are a very handsome cat" | gpt --create-role cat
 ```
 
-Create a new role called "cat".
+3. Send a message with the "cat" role to the GPT-3.5 Turbo model:
 
-### Example 3
-
-```bash
+```shell
 gpt -r cat "What is your favorite food?"
 ```
 
-Send a message with the "cat" role to the GPT-3.5 Turbo model.
+4. View the content of the "cat" role:
 
-### Example 4
-
-```bash
+```shell
 gpt --show-role cat
 ```
 
-Show the content of the "cat" role.
+5. List all available roles:
 
-### Example 5
-
-```bash
+```shell
 gpt --list-roles
 ```
 
-List the available roles.
+6. List all available models:
 
-### Example 6
-
-```bash
+```shell
 gpt --list-models
 ```
 
-List the available models.
+7. Send a message to the GPT-3.5 Turbo model and show the full API response:
 
-### Example 7
-
-```bash
+```shell
 gpt -f "Hello! How are you?"
 ```
 
-Send a message to the GPT-3.5 Turbo model and show the full API response.
+8. Enable debug mode. Instead of making the actual API call, it shows the curl command:
 
-### Example 8
-
-```bash
+```shell
 gpt -d "Hello! How are you?"
 ```
 
-Debug mode. Show the curl command that would be executed instead of making the actual API call.
+9. Specify a file to be modified using the `--file` option and show the output:
+
+```shell
+gpt --file <file_path> --role=cat "Some additional instructions."
+```
