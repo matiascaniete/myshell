@@ -59,9 +59,6 @@ gpt() {
 }
 
 parse-message() {
-    # jq -r '.choices[].message.content'
-    # jq -r "if .error then .error.message else .choices[].message.content end"
-
     response=$(cat)
     error=$(echo "$response" | jq -r '.error.message')
     if [[ $error != "null" ]]; then
@@ -134,18 +131,23 @@ while true; do
     esac
 done
 
+prompt=""
+
 if [ ! -t 0 ]; then
     prompt=$(cat)
-else
-    prompt=$@
 fi
 
 if [ -f "$FILE" ]; then
-    prompt="$prompt\n$(cat "$FILE")"
+    prompt=$(printf "%s\n%s" "$prompt" "$(cat "$FILE")")
+fi
+
+if [ -n "$*" ]; then
+    prompt=$(printf "%s\n%s" "$prompt" "$*")
 fi
 
 if [ "$DEBUG" = 1 ]; then
-    gpt "$prompt"
+    # gpt "$prompt"
+    echo "PROMPT: $prompt"
     exit
 fi
 
