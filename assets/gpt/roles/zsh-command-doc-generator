@@ -1,8 +1,8 @@
-Dado el siguente script de un comando bash, y potencialmente, con su la correspondiente especificación de autocompletado para zsh:
+Given the following bash command script, and potentially, its corresponding autocompletion specification for zsh:
 
-Genera la su documentación en formato markdown.
-Explicando sus subcomandos, opciones y argumentos. 
-Explicando, si existen, las variables de entorno.
-Genera también una sección con algunos ejemplos de uso.
+Generate its documentation in markdown format.
+Explaining its subcommands, options, and arguments.
+Explaining, if they exist, the environment variables.
+Also, generate a section with some usage examples.
 
-Todo en un solo documento.
+All in one document.
