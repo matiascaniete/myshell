@@ -32,32 +32,28 @@ gpt() {
 
     user_json_message=$(jq -Rs '. as $content | {role: "user", content: $content}' <<< "$*")
 
+    command='curl -s https://api.openai.com/v1/chat/completions \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Bearer $OPENAI_API_KEY" \
+        -d "{
+        \"model\": \"$model\",
+        \"temperature\": $TEMPERATURE,
+        \"user\": \"myshell-gpt-chat\",
+        \"messages\": [
+            $role_json_message
+            $user_json_message
+        ]
+    }"'
+
     if [ "$DEBUG" = 0 ]; then
-        curl -s https://api.openai.com/v1/chat/completions \
-            -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $OPENAI_API_KEY" \
-            -d "{
-        \"model\": \"$model\",
-        \"temperature\": $TEMPERATURE,
-        \"user\": \"myshell-gpt-chat\",
-        \"messages\": [
-            $role_json_message
-            $user_json_message
-        ]
-        }"
+        eval "$command"
     else
-        echo curl -s https://api.openai.com/v1/chat/completions \
-            -H "Content-Type: application/json" \
-            -H "Authorization: Bearer $OPENAI_API_KEY" \
-            -d "{
-        \"model\": \"$model\",
-        \"temperature\": $TEMPERATURE,
-        \"user\": \"myshell-gpt-chat\",
-        \"messages\": [
-            $role_json_message
-            $user_json_message
-        ]
-        }"
+        echo "TEMPERATURE: $TEMPERATURE"
+        echo "MODEL: $model"
+        echo "ROLE: $ROLE"
+        echo "ROLE_MESSAGE: $role_json_message"
+        echo "USER_MESSAGE: $user_json_message"
+        echo "COMMAND: $command"
         exit
     fi
 }
@@ -130,11 +126,6 @@ else
 fi
 
 if [ "$DEBUG" = 1 ]; then
-    echo "OPENAI_MODEL: $OPENAI_MODEL"
-    echo "ROLE: $ROLE"
-    echo "TEMPERATURE: $TEMPERATURE"
-    echo
-
     gpt "$prompt"
     exit
 fi
