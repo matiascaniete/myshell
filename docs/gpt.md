@@ -1,92 +1,92 @@
 # OpenAI GPT Chat
 
-Script que utiliza la API de OpenAI para chatear con el modelo GPT-3.5 Turbo.
+This script uses the OpenAI API to chat with the GPT-3.5 Turbo model.
 
-## Uso
+## Usage
 
 ```bash
-gpt [opciones] <mensaje>
+gpt [options] <message>
 
 or
 
-echo <mensaje> | gpt [opciones]
+echo <message> | gpt [options]
 ```
 
-## Opciones
+## Options
 
-- `-h` `--help`: Muestra información de ayuda.
-- `-r <rol>` `--role <rol>`: Especifica el rol del mensaje.
-- `--list-roles`: Lista los roles disponibles.
-- `--create-role <rol>`: Crea un nuevo rol con el nombre especificado.
-- `--show-role <rol>`: Muestra el contenido de un rol.
-- `--list-models`: Lista los modelos disponibles.
-- `-f` `--full-response`: Muestra la respuesta completa de la API.
-- `-d` `--debug`: Modo de depuración.
-- `-m <modelo>` `--model <modelo>`: Especifica el modelo a utilizar.
-- `-t <temperatura>` `--temperature <temperatura>`: Especifica la temperatura.
+- `-h`, `--help`: Show help information.
+- `-r <role>`, `--role <role>`: Specify the role of the message.
+- `--list-roles`: List the available roles.
+- `--create-role <role>`: Create a new role with the specified name.
+- `--show-role <role>`: Show the content of a role.
+- `--list-models`: List the available models.
+- `-f`, `--full-response`: Show the full response from the API.
+- `-d`, `--debug`: Debug mode.
+- `-m <model>`, `--model <model>`: Specify the model to use.
+- `-t <temperature>`, `--temperature <temperature>`: Specify the temperature.
 
-## Ejemplos
+## Examples
 
-### Ejemplo 1
+### Example 1
 
 ```bash
-gpt "¡Hola! ¿Cómo estás?"
+gpt "Hello! How are you?"
 ```
 
-Envía un mensaje al modelo GPT-3.5 Turbo.
+Send a message to the GPT-3.5 Turbo model.
 
-### Ejemplo 2
+### Example 2
 
 ```bash
-echo "Eres un gato muy guapo" | gpt --create-role gato
+echo "You are a very handsome cat" | gpt --create-role cat
 ```
 
-Crea un nuevo rol llamado "bot".
+Create a new role called "cat".
 
-### Ejemplo 3
+### Example 3
 
 ```bash
-gpt -r gato "¿Cual es tu comida favorita?"
+gpt -r cat "What is your favorite food?"
 ```
 
-Envía un mensaje con el rol "gato" al modelo GPT-3.5 Turbo.
+Send a message with the "cat" role to the GPT-3.5 Turbo model.
 
-### Ejemplo 4
+### Example 4
 
 ```bash
-gpt --show-role gato
+gpt --show-role cat
 ```
 
-Muestra el contenido del rol "gato".
+Show the content of the "cat" role.
 
-### Ejemplo 5
+### Example 5
 
 ```bash
 gpt --list-roles
 ```
 
-Lista los roles disponibles.
+List the available roles.
 
-### Ejemplo 6
+### Example 6
 
 ```bash
 gpt --list-models
 ```
 
-Lista los modelos disponibles.
+List the available models.
 
-### Ejemplo 7
-
-```bash
-gpt -f "¡Hola! ¿Cómo estás?"
-```
-
-Envía un mensaje al modelo GPT-3.5 Turbo y muestra la respuesta completa de la API.
-
-### Ejemplo 8
+### Example 7
 
 ```bash
-gpt -d "¡Hola! ¿Cómo estás?"
+gpt -f "Hello! How are you?"
 ```
 
-Modo de depuración. Muestra el comando curl que se ejecutaría en lugar de realizar la llamada real a la API.
+Send a message to the GPT-3.5 Turbo model and show the full API response.
+
+### Example 8
+
+```bash
+gpt -d "Hello! How are you?"
+```
+
+Debug mode. Show the curl command that would be executed instead of making the actual API call.

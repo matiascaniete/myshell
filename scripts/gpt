@@ -140,6 +140,10 @@ else
     prompt=$@
 fi
 
+if [ -f "$FILE" ]; then
+    prompt="$prompt\n$(cat "$FILE")"
+fi
+
 if [ "$DEBUG" = 1 ]; then
     gpt "$prompt"
     exit
@@ -154,7 +158,6 @@ fi
 
 if [ -f "$FILE" ]; then
     tmpfile=$(mktemp)
-    prompt=$(cat "$FILE")
     (gpt "$prompt"|parse-message >"$tmpfile") && mv "$tmpfile" "$FILE"
     exit
 fi
