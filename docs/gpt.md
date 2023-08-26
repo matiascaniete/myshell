@@ -30,54 +30,62 @@ echo <message> | gpt [options]
 
 1. Send a message to the GPT-3.5 Turbo model:
 
-```shell
-gpt "Hello! How are you?"
-```
+   ```shell
+   gpt "Hello! How are you?"
+   ```
 
 2. Create a new role named "cat" and send a message:
 
-```shell
-echo "You are a very handsome cat" | gpt --create-role cat
-```
+   ```shell
+   echo "You are a very handsome cat" | gpt --create-role cat
+   ```
 
 3. Send a message with the "cat" role to the GPT-3.5 Turbo model:
 
-```shell
-gpt -r cat "What is your favorite food?"
-```
+   ```shell
+   gpt -r cat "What is your favorite food?"
+   ```
 
 4. View the content of the "cat" role:
 
-```shell
-gpt --show-role cat
-```
+   ```shell
+   gpt --show-role cat
+   ```
 
 5. List all available roles:
 
-```shell
-gpt --list-roles
-```
+   ```shell
+   gpt --list-roles
+   ```
 
 6. List all available models:
 
-```shell
-gpt --list-models
-```
+   ```shell
+   gpt --list-models
+   ```
 
 7. Send a message to the GPT-3.5 Turbo model and show the full API response:
 
-```shell
-gpt -f "Hello! How are you?"
-```
+   ```shell
+   gpt -f "Hello! How are you?"
+   ```
 
 8. Enable debug mode. Instead of making the actual API call, it shows the curl command:
 
-```shell
-gpt -d "Hello! How are you?"
-```
+   ```shell
+   gpt -d "Hello! How are you?"
+   ```
 
 9. Specify a file to be modified using the `--file` option and show the output:
 
+   ```shell
+   gpt --file <file_path> --role=cat "Some additional instructions."
+   ```
+
+### Configuration
+
+To configure the API key, set the `OPENAI_API_KEY` environment variable to your API key before running the script:
+
 ```shell
-gpt --file <file_path> --role=cat "Some additional instructions."
+export OPENAI_API_KEY=<your-api-key>
 ```
