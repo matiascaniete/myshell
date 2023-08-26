@@ -8,7 +8,7 @@ ROLES_PATH=$(realpath "$SCRIPT_PATH/../assets/gpt/roles")
 FULL_RESPONSE=0
 DEBUG=0
 
-DEFAULT_MODEL="gpt-3.5-turbo"
+DEFAULT_MODEL="gpt-3.5-turbo-16k"
 OPENAI_MODEL=""
 ROLE=""
 TEMPERATURE=1
