@@ -10,6 +10,7 @@ _gpt() {
         '--list-roles[List available roles]'
         '--create-role=[Create a role with name]'
         '--show-role=[Show a role]: :_gpt-role'
+        '--edit-role=[Edit a role]: :_gpt-role'
         '--list-models[List available models]'
         '-f[Show full response]'
         '--full-response[Show full response]'

@@ -72,7 +72,7 @@ parse-message() {
 
 # Options and arguments parsing
 
-options=$(getopt -o dhft:m:r: --long debug,help,full-response,temperature:,model:,role:,list-roles,list-models,create-role:,show-role:,file: -- "$@")
+options=$(getopt -o dhft:m:r: --long debug,help,full-response,temperature:,model:,role:,list-roles,list-models,create-role:,show-role:,edit-role:,file: -- "$@")
 eval set -- "$options"
 
 while true; do
@@ -104,6 +104,11 @@ while true; do
         --create-role)
             ROLE="$2"
             echo "$(cat)" >"$ROLES_PATH/$ROLE"
+            exit
+            ;;
+        --edit-role)
+            ROLE="$2"
+            $EDITOR "$ROLES_PATH/$ROLE"
             exit
             ;;
         --show-role)
