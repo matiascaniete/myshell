@@ -46,9 +46,7 @@ gpt() {
         ]
     }"'
 
-    if [ "$DEBUG" = 0 ]; then
-        eval "$command"
-    else
+    if [ "$GPT_DEBUG" = 1 ]; then
         echo "TEMPERATURE: $TEMPERATURE"
         echo "MODEL: $model"
         echo "ROLE: $ROLE"
@@ -56,6 +54,8 @@ gpt() {
         echo "USER_MESSAGE: $user_json_message"
         echo "COMMAND: $command"
         exit
+    else
+        eval "$command"
     fi
 }
 
