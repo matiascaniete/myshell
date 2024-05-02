@@ -1,0 +1,54 @@
+#!/bin/bash
+
+if [ -z "$IPGEOLOCATION_API_KEY" ]; then
+  echo "Error: IPGeolocation API key not set"
+  exit 1
+fi  
+
+JSON=0
+
+# check if option --json is set using getopt
+opt=$(getopt --name "$0" --options j --long json -- "$@")
+eval set -- "$opt"
+
+while true; do
+  case "$1" in
+    -j | --json)
+      JSON=1
+      shift
+      ;;
+    --)
+      shift
+      break
+      ;;
+    *)
+      echo "Error: Invalid option $1"
+      exit 1
+  esac
+done
+
+
+# Make a request to the IPGeolocation API
+response=$(curl -s "https://api.ipgeolocation.io/ipgeo?apiKey=${IPGEOLOCATION_API_KEY}&ip=$1")
+
+if [ $JSON -eq 1 ]; then
+  echo "$response" | jq .
+  exit 0
+fi
+
+# Parse the JSON response and retrieve the location information
+city=$(echo "$response" | jq -r '.city')
+region=$(echo "$response" | jq -r '.region_name')
+country=$(echo "$response" | jq -r '.country_name')
+latitude=$(echo "$response" | jq -r '.latitude')
+longitude=$(echo "$response" | jq -r '.longitude')
+latlong="$latitude, $longitude"
+isp=$(echo "$response" | jq -r '.isp')
+
+# Output the location information
+echo "City    : $city"
+echo "Region  : $region"
+echo "Country : $country"
+echo "ISP     : $isp"
+echo "Lat/Long: $latlong"
+echo "Map     : https://www.openstreetmap.org/?mlat=$latitude&mlon=$longitude#map=16/$latitude/$longitude"
