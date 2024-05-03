@@ -2,4 +2,16 @@
 
 # Description: Restart network manager (systemctl).
 
-sudo systemctl restart network-manager
+distro_type=$(distro-like)
+
+if [ "$distro_type" = "arch" ]; then
+    sudo systemctl restart NetworkManager
+    exit 0
+fi
+
+if [ "$distro_type" = "debian" ]; then
+    sudo systemctl restart network-manager
+    exit 0
+fi
+
+echo "Error: Unknown distro type: $distro_type"

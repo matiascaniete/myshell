@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Read the os-release file
+source /etc/os-release
+
+# Check if ID_LIKE variable is set
+if [[ -n "$ID_LIKE" ]]; then
+    # Split the ID_LIKE variable on whitespace
+    readarray -t distro <<< "$ID_LIKE"
+    # Loop through the array and print the distro names
+    for i in "${distro[@]}"
+    do
+        echo "$i"
+    done
+else
+    echo "Could not determine the Linux distribution."
+fi
