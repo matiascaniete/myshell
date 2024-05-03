@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Description: Get distro like (ID_LIKE) from os-release file.
+
 # Read the os-release file
 source /etc/os-release
 

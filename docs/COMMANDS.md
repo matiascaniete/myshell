@@ -9,6 +9,7 @@
 - clp: Selects command from history and copy it to clipboard.
 - color: Colorize text from argument or stdin.
 - confirm: Ask for confirmation to the user and returns 0 if yes, 1 otherwise.
+- distro-like: Get distro like (ID_LIKE) from os-release file.
 - et: Empty the trash.
 - fgh: fgh - Fuzzy google-crome history
 - fhelp: Fuzzy help, man pages, cht.sh, tldr
@@ -17,6 +18,7 @@
 - gpt: OpenAI gpt chat
 - header: Get all headers, status or location of an url.
 - hs: Home FZF search
+- iploc: Get location information from IPGeolocation API.
 - lpass-select: Show lastpass password selected from rofi or fzf.
 - mip: Get my public IP.
 - mktouch: mkdir -p and touch combined.

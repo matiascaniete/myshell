@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Description: Get location information from IPGeolocation API.
+
 if [ -z "$IPGEOLOCATION_API_KEY" ]; then
   echo "Error: IPGeolocation API key not set"
   exit 1
