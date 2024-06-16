@@ -19,6 +19,12 @@ gpt() {
 
     if [ "$ROLE" ]; then
         role_file=$ROLES_PATH/$ROLE
+
+        if [ ! -f "$role_file" ]; then
+            echo "Role [$ROLE] not found in [$ROLES_PATH]" >&2
+            exit 1
+        fi
+            
         role_content=$(cat "$role_file")
     else
         role_content=""
