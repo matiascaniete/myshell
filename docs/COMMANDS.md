@@ -29,6 +29,7 @@
 - rmenu-exit: Launches rofi with exit options
 - rnm: Restart network manager (systemctl).
 - rofiz: No description found.
+- scpb: ssh copy file or directory back to
 - slack: Sends message to slack channel from first positional argument or stdin.
 - split-footages: Separate multi-camera footages by date.
 - sslcc: Checks SSL certificates for domains
