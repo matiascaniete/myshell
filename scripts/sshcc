@@ -1,0 +1,57 @@
+#! /bin/env bash
+
+# Description: ssh copy file or directory back to client's home directory if not specified in the second positional argument.
+
+if [ -z "$1" ]; then
+    echo "Usage: $(basename "$0") <file or directory> [destination directory on client]"
+    exit 1
+fi
+
+if [ ! -f "$1" ] && [ ! -d "$1" ]; then
+    echo "[$1] is not a file or directory."
+    exit 1
+fi
+
+ssh_client_ip=$(echo "$SSH_CLIENT" | cut -d' ' -f1)
+
+if [ -z "$ssh_client_ip" ]; then
+    ssh_client_ip=$(pinky | tail -n1 | awk '{print $6}')
+fi
+
+if [ -z "$ssh_client_ip" ]; then
+    echo "SSH client IP could be found. Are you in a ssh session?"
+    exit 1
+fi
+
+# set up ssh multiplexing on the fly
+echo "[$ssh_client_ip] connecting..."
+mkdir -p ~/.ssh/controlmasters
+
+# shellcheck disable=SC2089
+ssh_options="-o ControlMaster=auto -o ControlPersist=10m -o ControlPath=\"~/.ssh/controlmasters/ssh-%C\""
+# ssh -o ControlMaster=auto -o ControlPersist=10m -o ControlPath="~/.ssh/controlmasters/ssh-%r@%h:%p" "$ssh_client_ip" "exit"
+
+if [ -z "$2" ]; then
+    # shellcheck disable=SC2086
+    # shellcheck disable=SC2090
+    scp $ssh_options -r "$1" "$ssh_client_ip":~/
+else
+    # if directory on the client does not exist, create it
+    # shellcheck disable=SC2029
+    # shellcheck disable=SC2086
+    # shellcheck disable=SC2090
+    if ! ssh $ssh_options "$ssh_client_ip" "test -d ~/$2"; then
+        echo "[$ssh_client_ip/$2] does not exist. Creating..."
+        # shellcheck disable=SC2086
+        ssh $ssh_options "$ssh_client_ip" "mkdir -p ~/$2"
+    fi
+
+    # shellcheck disable=SC2029
+    # shellcheck disable=SC2086
+    # shellcheck disable=SC2090
+    scp $ssh_options -r "$1" "$ssh_client_ip":~/"$2"/
+fi
+
+# shellcheck disable=SC2086
+# shellcheck disable=SC2090
+ssh -O exit $ssh_options "$ssh_client_ip"
