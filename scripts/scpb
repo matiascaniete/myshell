@@ -23,6 +23,12 @@ if [ -z "$ssh_client_ip" ]; then
     exit 1
 fi
 
+# shellcheck disable=SC2016
+if ! ping -c1 "$ssh_client_ip" &> /dev/null; then
+    echo "[$ssh_client_ip] is not reachable."
+    exit 1
+fi
+
 # set up ssh multiplexing on the fly
 echo "[$ssh_client_ip] connecting..."
 mkdir -p ~/.ssh/controlmasters
