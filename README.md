@@ -6,12 +6,12 @@
 cd ~ && git clone git@github.com:matiascaniete/myshell.git
 ```
 
-## Configuration and Autocompletion in Zsh
-
 To enable autocompletion for the MyShell scripts in zsh, add the following line
 to your `~/.zshrc` file:
 
 ```sh
+PATH=~/myshell/scripts:$PATH
+
 fpath=(~/myshell/autocomplete $fpath)
 
 autoload -Uz compinit
