@@ -16,6 +16,7 @@
 - fman: fuzzy man pages
 - gcop: Git commits on FZF
 - gpt: OpenAI gpt chat
+- gtr: Translate using Google Translate API.
 - header: Get all headers, status or location of an url.
 - hs: Home FZF search
 - iploc: Get location information from IPGeolocation API.
@@ -23,6 +24,7 @@
 - mip: Get my public IP.
 - mktouch: mkdir -p and touch combined.
 - mysh: mysh manager.
+- open: Open a file or URL in the
 - rascreen: Send to Raspberry LCD screen thru tcp socket. Either a string or command as first argument or message from stdin.
 - rgf: ripgrep thru fzf.
 - rmenu-apps: Launches rofi for selecting apps

@@ -12,6 +12,7 @@ subcommands=(
   'create:Create a new command file.'
   'gpt-create-zsh-completion:Generate zsh completion for a command.'
   'gpt-create-docs:Generate documentation for a command.'
+  'check-deps:Check if all dependencies are installed.'
 )
 
 _printers() {

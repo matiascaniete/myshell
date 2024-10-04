@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# description: Open a file or URL in the user's preferred application
+
+xdg-open "$@"

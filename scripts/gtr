@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+# description: Translate using Google Translate API.
+
+_translate() {
+    sl=${1:-en}
+    tl=${2:-es}
+    content=${3:-$(</dev/stdin)}
+
+    if [ -z "$content" ]; then
+        echo "No content to translate! Use pipe or argument."
+        return 1
+    fi
+
+    base_url="https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q="
+    ua='Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36'
+
+    if [ $(echo "$content" | wc -c) -gt 5000 ]; then
+        echo "Content too long to translate"
+        return 1
+    fi
+
+    qry=$(echo -n "$content" | jq -sRr @uri)
+    full_url=${base_url}${qry}
+    response=$(curl -sA "${ua}" "${full_url}")
+
+    jq -r '[.[0][][0]] | join("")' <<<"${response}"
+}
+
+# if num args > 2
+
+if [ $# -gt 2 ]; then
+    sl=${1}
+    tl=${2}
+    shift 2
+    _translate "$sl" "$tl" "$@"
+    exit
+fi
+
+# if num args = 2
+if [ $# -eq 2 ]; then
+    sl=${1}
+    tl=${2}
+    content=$(</dev/stdin)
+    _translate "$sl" "$tl" "$content"
+    exit
+fi
+
+# if num args = 1
+if [ $# -eq 1 ]; then
+    content=${1}
+    _translate "auto" "es" "$content"
+    exit
+fi
+
+# if num args = 0
+if [ $# -eq 0 ]; then
+    content=$(</dev/stdin)
+    _translate "auto" "es" "$content"
+    exit
+fi
+

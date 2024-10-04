@@ -4,6 +4,14 @@
 
 BASE_PATH=$(dirname "$(realpath "$0")")
 
+deps=(
+    "mdless"
+    "bat"
+    "jq"
+    "fzf"
+    "gpt"
+)
+
 # printers
 
 _printer_dp_plain() {
@@ -81,11 +89,13 @@ help() {
 }
 
 create() {
+    [ -z "$1" ] && printf "No command was given\n" && exit 1
     filename="$BASE_PATH/$1"
     touch "$filename" && chmod +x "$filename" && $EDITOR "$filename"
 }
 
 gpt-create-zsh-completion() {
+    [ -z "$1" ] && printf "No command was given\n" && exit 1
     command="$1"
     script_file="$BASE_PATH/../scripts/$command"
     autocomplete_file="$BASE_PATH/../autocomplete/_$command"
@@ -98,6 +108,7 @@ gpt-create-zsh-completion() {
 }
 
 gpt-create-docs() {
+    [ -z "$1" ] && printf "No command was given\n" && exit 1
     command="$1"
     script_file="$BASE_PATH/../scripts/$command"
     autocomplete_file="$BASE_PATH/../autocomplete/_$command"
@@ -108,6 +119,16 @@ gpt-create-docs() {
         --role=zsh-command-doc-generator \
         --temperature=0 > "$tmp_file" \
         && mv "$tmp_file" "$docs_file"
+}
+
+check-deps() {
+    for dep in "${deps[@]}"; do
+        if ! command -v "$dep" &>/dev/null; then
+            printf "Dependency not found: %s\n" "$dep"
+        else
+            printf "Dependency found: %s\n" "$dep"
+        fi
+    done
 }
 
 # main
