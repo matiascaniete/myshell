@@ -1,0 +1,37 @@
+#! /bin/env bash
+
+# Description: A wrapper for yt-dlp
+
+youtube_dl_cmd="yt-dlp"
+
+# download video in mp4
+v() {
+    $youtube_dl_cmd -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' "$1"
+}
+
+# download audio in mp3
+a() {
+    $youtube_dl_cmd -x --audio-format mp3 "$1"
+}
+
+# download subtitles generated automatically
+s() {
+    $youtube_dl_cmd --write-auto-sub --skip-download "$1"
+}
+
+vtt2txt() {
+    # convert webvtt to txt format
+    sed -e '1,4d' -E -e '/^$|]|>$|%$/d' "$1" | awk '!seen[$0]++' >"${1%.vtt}.txt"
+}
+
+if [ $# -eq 0 ]; then
+    echo "Usage: $(basename "$0") (v|a|s) <url>"
+    echo "What: (v)ideo, (a)udio, (s)ubtitles"
+    echo
+    echo "Usage: $(basename "$0") vtt2txt <inputfile>"
+
+    exit 1
+fi
+
+# invoke options
+$1 "$2"

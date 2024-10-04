@@ -37,3 +37,4 @@
 - sslcc: Checks SSL certificates for domains
 - version: returns success if version number as first argument is greater or equals to second argument.
 - waitill: Ask for confirmation to end the program by pressing some defined key (q by default).
+- yt: A wrapper for yt-dlp

@@ -2,24 +2,20 @@
 
 ## Installation
 
-To install MyShell, follow these steps:
+```
+cd ~ && git clone git@github.com:matiascaniete/myshell.git
+```
 
-1. Open your terminal.
-2. Change to your home directory by running the command:
-   ```
-   cd ~
-   ```
-3. Clone the MyShell repository by running the command:
-   ```
-   git clone git@github.com:matiascaniete/myshell.git
-   ```
-
-## Configuration and Autocompletion in zsh
-
-To enable autocompletion for the MyShell scripts in zsh, add the following line to your `~/.zshrc` file:
+To enable autocompletion for the MyShell scripts in zsh, add the following line
+to your `~/.zshrc` file:
 
 ```sh
+PATH=~/myshell/scripts:$PATH
+
 fpath=(~/myshell/autocomplete $fpath)
+
+autoload -Uz compinit
+compinit
 ```
 
 ## List of Commands
