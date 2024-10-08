@@ -14,7 +14,8 @@ default="$(lower "$default")"
 yn=$([ "$default" = "n" ] && printf "[y/N]" || printf "[Y/n]")
 
 printf "%s %s" "$(color yellow "$message")" "$yn"
-read -r response
+# read -r response
+read response </dev/tty # Read from the terminal
 
 response="$(lower "$response")"
 response="${response:-$default}"
