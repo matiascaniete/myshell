@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+# description: Search Google for a query
+
+xdg-open https://www.google.com/search?q="$*"
