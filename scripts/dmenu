@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+# dmenu wrapper using rofi
+
+rofi -dmenu -steal-focus "$@"
