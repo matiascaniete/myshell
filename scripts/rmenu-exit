@@ -8,6 +8,6 @@
 #         | xargs -i"XXX" --no-run-if-empty bash -c "XXX"
 
 echo "systemctl suspend|systemctl hibernate|systemctl hybrid-sleep|systemctl reboot|systemctl poweroff" \
-    | rofi -dmenu -p "Exit" -sep "|" -steal-focus -normal-window \
+    | rofi -dmenu -p "Exit" -sep "|" -steal-focus -normal-window -no-show-icons \
     | head -n1 \
     | xargs -i"XXX" --no-run-if-empty bash -c "XXX"
