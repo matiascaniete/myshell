@@ -4,6 +4,7 @@
 
 rofi -sorting-method fzf \
     -steal-focus \
+    -normal-window \
     -icon-theme Paper \
     -show drun run ssh combi keys \
     -modi combi,drun,run,ssh,keys
